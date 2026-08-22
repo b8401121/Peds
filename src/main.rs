@@ -154,10 +154,13 @@ fn app() -> Html {
                         <div class="bwbox">
                             <label for="bw">{"體重"}</label>
                             <div class="bw-input-wrap">
-                                <input id="bw" type="number" inputmode="decimal" step="0.5" min="0" max="120" placeholder="—" 
-                                    value={weight.map(|v| v.to_string()).unwrap_or_default()}
-                                    oninput={on_weight_input} />
-                                <span class="unit">{"kg"}</span>
+                                <div class="lcd-screen">
+                                    <span class="lcd-ghost">{"88.8"}</span>
+                                    <input id="bw" type="number" inputmode="decimal" step="0.5" min="0" max="120" placeholder="—" 
+                                        value={weight.map(|v| v.to_string()).unwrap_or_default()}
+                                        oninput={on_weight_input} />
+                                </div>
+                                <span class="unit">{"KG"}</span>
                             </div>
                             <div class="steps">
                                 <button type="button" title="體重 -1 kg" onclick={on_bump(-1.0)}>{"−"}</button>

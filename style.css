@@ -1,6 +1,8 @@
 /* ==========================================================================
-   Eye-Care Color Palettes & Responsive Mobile Stylesheet
+   DSEG7 Digital Clock 7-Segment Web Font & Stylesheet
    ========================================================================== */
+@import url('https://cdn.jsdelivr.net/npm/dseg@0.46.0/css/dseg.min.css');
+
 
 /* 預設：柔和護眼灰 (Soft Eye-Care Slate) - 降低亮度，徹底消除螢幕刺眼白光 */
 :root, .theme-soft {
@@ -261,23 +263,23 @@ h1 span {
 }
 
 /* ==========================================================================
-   Digital Watch / LCD Meter Weight Box Component
+   Classic 7-Segment LCD Digital Watch Weight Box Component
    ========================================================================== */
 .bwbox {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
-  border: 2px solid #334155;
+  background: linear-gradient(180deg, #242c38 0%, #151b24 100%);
+  border: 2px solid #384556;
   border-radius: 12px;
   padding: 5px 10px;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15), 0 3px 6px rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 3px 6px rgba(0, 0, 0, 0.35);
   transition: all 0.2s ease;
 }
 
 .bwbox:focus-within {
   border-color: #38bdf8;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15), 0 0 0 3px rgba(56, 189, 248, 0.25), 0 3px 8px rgba(0, 0, 0, 0.35);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 0 0 3px rgba(56, 189, 248, 0.25), 0 3px 8px rgba(0, 0, 0, 0.4);
 }
 
 .bwbox label {
@@ -290,16 +292,41 @@ h1 span {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
 }
 
-/* Digital LCD Display Window */
+/* Classic 7-Segment LCD Display Window */
 .bw-input-wrap {
   display: flex;
   align-items: center;
-  gap: 4px;
-  background: #060c14;
-  border: 1.5px solid #1e293b;
+  gap: 5px;
+  background: #d4ddd4;
+  border: 2px solid #8c968c;
   border-radius: 6px;
-  padding: 2px 8px;
-  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.85), 0 1px 0 rgba(255, 255, 255, 0.08);
+  padding: 3px 8px;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.35), 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.lcd-screen {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 76px;
+  height: 28px;
+}
+
+.lcd-ghost {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'DSEG7-Classic', 'DSEG7-Modern', monospace;
+  font-size: 26px;
+  font-weight: 700;
+  color: #b0bcb0;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: 2px;
+  line-height: 1;
+  text-align: right;
 }
 
 .bwbox input::-webkit-outer-spin-button,
@@ -309,34 +336,38 @@ h1 span {
 }
 
 .bwbox input {
+  position: relative;
+  z-index: 2;
   -moz-appearance: textfield;
-  width: 68px;
-  font-family: 'Courier New', 'SF Mono', Consolas, Monaco, monospace;
-  font-size: 23px;
-  font-weight: 900;
+  width: 100%;
+  font-family: 'DSEG7-Classic', 'DSEG7-Modern', monospace;
+  font-size: 26px;
+  font-weight: 700;
   border: 0;
   background: transparent;
-  color: #00f2fe;
+  color: #1a201a;
   text-align: right;
   outline: none;
   font-variant-numeric: tabular-nums;
   letter-spacing: 2px;
-  text-shadow: 0 0 8px rgba(0, 242, 254, 0.65), 0 0 2px #00f2fe;
+  line-height: 1;
+  padding: 0;
+  margin: 0;
 }
 
 .bwbox input::placeholder {
-  color: rgba(0, 242, 254, 0.25);
-  text-shadow: none;
+  color: transparent;
 }
 
 .bwbox .unit {
-  font-family: 'Courier New', 'SF Mono', Consolas, monospace;
-  font-size: 13px;
+  font-family: 'DSEG7-Classic', 'DSEG7-Modern', -apple-system, monospace;
+  font-size: 11px;
   font-weight: 900;
   letter-spacing: 1px;
-  color: #38bdf8;
+  color: #2b332b;
   text-transform: uppercase;
-  text-shadow: 0 0 5px rgba(56, 189, 248, 0.6);
+  user-select: none;
+  line-height: 1;
 }
 
 /* Tactile Watch Stepper Push-Buttons */
@@ -374,33 +405,36 @@ h1 span {
   box-shadow: 0 0 0 #090e17, inset 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 
-/* Theme Adaptations for Digital Watch */
-.theme-warm .bwbox {
-  background: linear-gradient(145deg, #292524 0%, #1c1917 100%);
-  border-color: #44403c;
+/* Theme Adaptations for 7-Segment LCD Watch */
+.theme-dark .bw-input-wrap {
+  background: #09121c;
+  border-color: #223244;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.85);
 }
+.theme-dark .lcd-ghost {
+  color: rgba(56, 189, 248, 0.12);
+}
+.theme-dark .bwbox input {
+  color: #38bdf8;
+  text-shadow: 0 0 8px rgba(56, 189, 248, 0.7);
+}
+.theme-dark .bwbox .unit {
+  color: #38bdf8;
+  text-shadow: 0 0 5px rgba(56, 189, 248, 0.6);
+}
+
 .theme-warm .bw-input-wrap {
-  background: #141210;
-  border-color: #292524;
+  background: #ded7c6;
+  border-color: #a39985;
+}
+.theme-warm .lcd-ghost {
+  color: #c4bbab;
 }
 .theme-warm .bwbox input {
-  color: #fbbf24;
-  text-shadow: 0 0 8px rgba(251, 191, 36, 0.65), 0 0 2px #fbbf24;
-}
-.theme-warm .bwbox input::placeholder {
-  color: rgba(251, 191, 36, 0.25);
+  color: #2b2114;
 }
 .theme-warm .bwbox .unit {
-  color: #f59e0b;
-  text-shadow: 0 0 5px rgba(245, 158, 11, 0.6);
-}
-.theme-warm .steps button {
-  background: linear-gradient(180deg, #44403c 0%, #292524 100%);
-  border-color: #57534e;
-  box-shadow: 0 2px 0 #0c0a09, 0 3px 4px rgba(0, 0, 0, 0.3);
-}
-.theme-warm .steps button:hover {
-  color: #fbbf24;
+  color: #4a3b2a;
 }
 
 /* Search Bar */
@@ -1381,17 +1415,27 @@ main {
   }
 
   .bw-input-wrap {
-    padding: 1px 5px;
+    padding: 2px 6px;
+    gap: 3px;
+  }
+
+  .lcd-screen {
+    width: 62px;
+    height: 24px;
+  }
+
+  .lcd-ghost {
+    font-size: 21px;
+    letter-spacing: 1.5px;
   }
 
   .bwbox input {
-    width: 56px;
-    font-size: 19px;
-    letter-spacing: 1px;
+    font-size: 21px;
+    letter-spacing: 1.5px;
   }
 
   .bwbox .unit {
-    font-size: 11px;
+    font-size: 10px;
   }
 
   .steps button {
