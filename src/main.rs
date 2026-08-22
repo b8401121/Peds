@@ -239,9 +239,36 @@ fn app() -> Html {
                             })
                         }
                     </nav>
+                    <div class="legend-panel">
+                        <div class="legend-hd">{"🎨 劑型色彩圖例"}</div>
+                        <div class="legend-list">
+                            <div class="legend-item"><span class="legend-dot dot-oral"></span><span class="legend-name">{"口服"}</span><span class="legend-desc">{"水劑/糖漿/錠劑"}</span></div>
+                            <div class="legend-item"><span class="legend-dot dot-topical"></span><span class="legend-name">{"外用"}</span><span class="legend-desc">{"藥膏/眼耳/噴液"}</span></div>
+                            <div class="legend-item"><span class="legend-dot dot-inj"></span><span class="legend-name">{"針劑"}</span><span class="legend-desc">{"IV/IM/靜脈輸注"}</span></div>
+                            <div class="legend-item"><span class="legend-dot dot-rectal"></span><span class="legend-name">{"栓劑/灌腸"}</span><span class="legend-desc">{"栓劑/甘油球/浣腸"}</span></div>
+                            <div class="legend-item"><span class="legend-dot dot-inhal"></span><span class="legend-name">{"吸入"}</span><span class="legend-desc">{"氣霧/蒸氣霧化"}</span></div>
+                        </div>
+                        <div class="legend-hd alert-hd">{"⚠️ 標示符號說明"}</div>
+                        <div class="legend-list">
+                            <div class="legend-item"><span class="legend-sym warn-sym">{"⚠"}</span><span class="legend-desc">{"仿單極量/年齡禁用"}</span></div>
+                            <div class="legend-item"><span class="legend-sym mild-sym">{"※"}</span><span class="legend-desc">{"注意事項/稀釋分流"}</span></div>
+                            <div class="legend-item"><span class="legend-sym star-sym">{"★"}</span><span class="legend-desc">{"核心急救/重點處方"}</span></div>
+                        </div>
+                    </div>
                 </aside>
 
                 <main>
+                    <div class="quick-legend-bar">
+                        <span class="legend-bar-title">{"📌 劑型邊框識別："}</span>
+                        <div class="legend-chips">
+                            <span class="legend-chip chip-oral"><span class="legend-dot dot-oral"></span>{"口服 (水劑/錠劑)"}</span>
+                            <span class="legend-chip chip-topical"><span class="legend-dot dot-topical"></span>{"外用 (藥膏/眼耳鼻)"}</span>
+                            <span class="legend-chip chip-inj"><span class="legend-dot dot-inj"></span>{"針劑 (IV/IM/輸注)"}</span>
+                            <span class="legend-chip chip-rectal"><span class="legend-dot dot-rectal"></span>{"栓劑／灌腸"}</span>
+                            <span class="legend-chip chip-inhal"><span class="legend-dot dot-inhal"></span>{"吸入劑"}</span>
+                        </div>
+                    </div>
+
                     <div id="app">
                         {
                             for (0..data_array.length()).map(|i| {
