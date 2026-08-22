@@ -199,13 +199,114 @@ fn app() -> Html {
                                         
                                         if hit { sec_shown += 1; }
 
+                                        let m_arr = Reflect::get(&drug, &JsValue::from_str("m"))
+                                            .ok()
+                                            .map(|v| Array::from(&v))
+                                            .unwrap_or_else(Array::new);
+                                        
+                                        let r_arr = Reflect::get(&drug, &JsValue::from_str("r"))
+                                            .ok()
+                                            .filter(|v| !v.is_undefined() && !v.is_null())
+                                            .map(|v| Array::from(&v));
+
+                                        let mut calc_html = html! { <p class="nobw">{"↑ 輸入體重後自動計算"}</p> };
+                                        let calc_val = Reflect::get(&drug, &JsValue::from_str("calc")).unwrap_or(JsValue::NULL);
+                                        
+                                        if calc_val.is_function() {
+                                            if let Some(w) = *weight {
+                                                let js_func = js_sys::Function::from(calc_val);
+                                                if let Ok(res) = js_func.call1(&JsValue::NULL, &JsValue::from_f64(w)) {
+                                                    if !res.is_null() && !res.is_undefined() {
+                                                        let rows = Array::from(&res);
+                                                        let mains = (0..rows.length()).filter(|&idx| {
+                                                            let row = rows.get(idx);
+                                                            let sub = Reflect::get(&row, &JsValue::from_str("sub"))
+                                                                .ok()
+                                                                .and_then(|v| v.as_bool())
+                                                                .unwrap_or(false);
+                                                            !sub
+                                                        }).count();
+                                                        
+                                                        let mut seen = 0;
+                                                        calc_html = html! {
+                                                            for (0..rows.length()).map(|idx| {
+                                                                let row = rows.get(idx);
+                                                                let lbl = Reflect::get(&row, &JsValue::from_str("lbl")).unwrap().as_string().unwrap_or_default();
+                                                                let big = Reflect::get(&row, &JsValue::from_str("big")).unwrap().as_string().unwrap_or_default();
+                                                                let freq = Reflect::get(&row, &JsValue::from_str("freq")).ok().and_then(|v| v.as_string()).unwrap_or_default();
+                                                                let flag = Reflect::get(&row, &JsValue::from_str("flag")).ok().and_then(|v| v.as_string()).filter(|s| !s.is_empty());
+                                                                let sub = Reflect::get(&row, &JsValue::from_str("sub")).ok().and_then(|v| v.as_bool()).unwrap_or(false);
+                                                                
+                                                                if sub {
+                                                                    html! {
+                                                                        <div class="dose sub">
+                                                                            <span class="lbl">{lbl}</span>
+                                                                            <span class="big" dangerously_set_inner_html={big} />
+                                                                            if !freq.is_empty() { <span class="freq">{freq}</span> }
+                                                                            if let Some(fg) = flag { <span class="flag cap">{format!("⚠ {}", fg)}</span> }
+                                                                        </div>
+                                                                    }
+                                                                } else {
+                                                                    let mut cls = "dose".to_string();
+                                                                    if mains > 2 && seen > 0 { cls.push_str(" sm"); }
+                                                                    seen += 1;
+                                                                    html! {
+                                                                        <div class={cls}>
+                                                                            <span class="lbl">{lbl}</span>
+                                                                            <div class="big" dangerously_set_inner_html={big} />
+                                                                            if !freq.is_empty() { <div class="freq">{freq}</div> }
+                                                                            if let Some(fg) = flag { <span class="flag cap">{format!("⚠ {}", fg)}</span> }
+                                                                        </div>
+                                                                    }
+                                                                }
+                                                            })
+                                                        };
+                                                    }
+                                                }
+                                            }
+                                        } else {
+                                            calc_html = html! {};
+                                        }
+
+                                        let is_inj = rt == "針劑";
+                                        let hl = n.starts_with('★');
+                                        let card_cls = classes!("card", if !hit { "hide" } else { "" }, if is_inj { "inj" } else { "" }, if hl { "hl" } else { "" });
+
                                         html! {
-                                            <article class={classes!("card", if !hit { "hide" } else { "" })}>
-                                                <p class="dn">{n}</p>
+                                            <article class={card_cls}>
+                                                <p class="dn">{n.clone()} if !rt.is_empty() { <span class={classes!("rt", if is_inj { "inj" } else { "" })}>{rt.clone()}</span> }</p>
                                                 if !s.is_empty() { <p class="dsub" dangerously_set_inner_html={s.clone()} /> }
                                                 if !w.is_empty() { <p class="warnbox" dangerously_set_inner_html={format!("⚠ {}", w)} /> }
                                                 if !wm.is_empty() { <p class="warnbox mild" dangerously_set_inner_html={format!("※ {}", wm)} /> }
-                                                <div class="meta"><div><span class="f">{f}</span></div></div>
+                                                
+                                                <div class="out">{calc_html}</div>
+                                                
+                                                <div class="meta">
+                                                    <div><span class="f">{f}</span></div>
+                                                    {
+                                                        for (0..m_arr.length()).map(|idx| {
+                                                            let m_str = m_arr.get(idx).as_string().unwrap_or_default();
+                                                            html! { <div dangerously_set_inner_html={m_str} /> }
+                                                        })
+                                                    }
+                                                    if let Some(refs) = r_arr {
+                                                        <div class="refs">{"來源："}
+                                                        {
+                                                            for (0..refs.length()).map(|idx| {
+                                                                let ref_item = Array::from(&refs.get(idx));
+                                                                let ref_name = ref_item.get(0).as_string().unwrap_or_default();
+                                                                let ref_link = ref_item.get(1).as_string().unwrap_or_default();
+                                                                html! {
+                                                                    <>
+                                                                        if idx > 0 { {" ・ "} }
+                                                                        <a href={ref_link} target="_blank" rel="noopener noreferrer">{ref_name}</a>
+                                                                    </>
+                                                                }
+                                                            })
+                                                        }
+                                                        </div>
+                                                    }
+                                                </div>
                                             </article>
                                         }
                                     })
