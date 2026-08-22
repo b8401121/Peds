@@ -110,7 +110,7 @@ fn app() -> Html {
                             <button type="button" onclick={on_bump(-1.0)}>{"−"}</button>
                             <button type="button" onclick={on_bump(1.0)}>{"＋"}</button>
                         </div>
-                        <input id="q" type="search" placeholder="搜尋藥名 / 症狀" oninput={on_search_input} />
+                        <input id="q" type="search" placeholder="搜尋藥名 / 症狀" oninput={on_search_input} value={(*search_query).clone()} />
                         <a class="contact" href="mailto:peds@tmuhpeds.info">{"✉ 回報問題"}<span class="cl">{"　peds@tmuhpeds.info"}</span></a>
                     </div>
                 </div>
@@ -122,9 +122,11 @@ fn app() -> Html {
                     <nav id="tocnav">
                         <button class={classes!("tocitem", if !searching && cat == -1 { "on" } else { "" })} onclick={
                             let selected_category = selected_category.clone();
+                            let search_query = search_query.clone();
                             let close = close_drawer.clone();
                             Callback::from(move |e: MouseEvent| {
                                 selected_category.set(-1);
+                                search_query.set(String::new());
                                 close.emit(e);
                             })
                         }>
@@ -147,9 +149,11 @@ fn app() -> Html {
                                                 let c = Reflect::get(&sec, &JsValue::from_str("c")).unwrap().as_string().unwrap_or_default();
                                                 
                                                 let selected_category = selected_category.clone();
+                                                let search_query = search_query.clone();
                                                 let close = close_drawer.clone();
                                                 let onclick = Callback::from(move |e: MouseEvent| {
                                                     selected_category.set(data_idx);
+                                                    search_query.set(String::new());
                                                     close.emit(e);
                                                 });
                                                 
@@ -188,7 +192,10 @@ fn app() -> Html {
                                         let f = Reflect::get(&drug, &JsValue::from_str("f")).ok().and_then(|v| v.as_string()).unwrap_or_default();
                                         
                                         let search_key = format!("{} {} {} {} {} {}", n, s, f, c, k, rt).to_lowercase();
-                                        let hit = !searching || search_key.contains(&q);
+                                        let search_hit = !searching || search_key.contains(&q);
+                                        
+                                        let cat_hit = searching || cat == -1 || cat == (i as i32);
+                                        let hit = search_hit && cat_hit;
                                         
                                         if hit { sec_shown += 1; }
 
