@@ -260,34 +260,46 @@ h1 span {
   justify-content: flex-end;
 }
 
-/* Weight Input Box */
+/* ==========================================================================
+   Digital Watch / LCD Meter Weight Box Component
+   ========================================================================== */
 .bwbox {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: var(--primary-soft);
-  border: 1.5px solid var(--primary-border);
-  border-radius: var(--radius-md);
-  padding: 4px 10px;
+  background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+  border: 2px solid #334155;
+  border-radius: 12px;
+  padding: 5px 10px;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15), 0 3px 6px rgba(0, 0, 0, 0.25);
   transition: all 0.2s ease;
 }
 
 .bwbox:focus-within {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+  border-color: #38bdf8;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15), 0 0 0 3px rgba(56, 189, 248, 0.25), 0 3px 8px rgba(0, 0, 0, 0.35);
 }
 
 .bwbox label {
-  font-size: 13.5px;
-  font-weight: 700;
-  color: var(--primary);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1.2px;
+  color: #94a3b8;
+  text-transform: uppercase;
   white-space: nowrap;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
 }
 
+/* Digital LCD Display Window */
 .bw-input-wrap {
   display: flex;
-  align-items: baseline;
-  gap: 3px;
+  align-items: center;
+  gap: 4px;
+  background: #060c14;
+  border: 1.5px solid #1e293b;
+  border-radius: 6px;
+  padding: 2px 8px;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.85), 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .bwbox input::-webkit-outer-spin-button,
@@ -298,53 +310,97 @@ h1 span {
 
 .bwbox input {
   -moz-appearance: textfield;
-  width: 65px;
-  font-size: 22px;
-  font-weight: 800;
+  width: 68px;
+  font-family: 'Courier New', 'SF Mono', Consolas, Monaco, monospace;
+  font-size: 23px;
+  font-weight: 900;
   border: 0;
   background: transparent;
-  color: var(--ink);
+  color: #00f2fe;
   text-align: right;
   outline: none;
   font-variant-numeric: tabular-nums;
-  font-family: inherit;
+  letter-spacing: 2px;
+  text-shadow: 0 0 8px rgba(0, 242, 254, 0.65), 0 0 2px #00f2fe;
+}
+
+.bwbox input::placeholder {
+  color: rgba(0, 242, 254, 0.25);
+  text-shadow: none;
 }
 
 .bwbox .unit {
-  font-size: 13.5px;
-  font-weight: 600;
-  color: var(--ink-secondary);
+  font-family: 'Courier New', 'SF Mono', Consolas, monospace;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: #38bdf8;
+  text-transform: uppercase;
+  text-shadow: 0 0 5px rgba(56, 189, 248, 0.6);
 }
 
+/* Tactile Watch Stepper Push-Buttons */
 .steps {
   display: flex;
-  gap: 4px;
+  gap: 5px;
 }
 
 .steps button {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--line);
-  background: var(--card);
-  color: var(--ink-secondary);
-  border-radius: var(--radius-sm);
+  border: 1px solid #475569;
+  background: linear-gradient(180deg, #334155 0%, #1e293b 100%);
+  color: #f1f5f9;
+  border-radius: 6px;
   width: 28px;
   height: 28px;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 900;
   cursor: pointer;
-  transition: all 0.15s ease;
+  box-shadow: 0 2px 0 #090e17, 0 3px 4px rgba(0, 0, 0, 0.3);
+  transition: all 0.1s ease;
+  user-select: none;
 }
 
 .steps button:hover {
-  background: var(--primary-soft);
-  color: var(--primary);
-  border-color: var(--primary-border);
+  background: linear-gradient(180deg, #475569 0%, #334155 100%);
+  color: #38bdf8;
+  border-color: #64748b;
 }
 
 .steps button:active {
-  transform: scale(0.92);
+  transform: translateY(2px);
+  box-shadow: 0 0 0 #090e17, inset 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+/* Theme Adaptations for Digital Watch */
+.theme-warm .bwbox {
+  background: linear-gradient(145deg, #292524 0%, #1c1917 100%);
+  border-color: #44403c;
+}
+.theme-warm .bw-input-wrap {
+  background: #141210;
+  border-color: #292524;
+}
+.theme-warm .bwbox input {
+  color: #fbbf24;
+  text-shadow: 0 0 8px rgba(251, 191, 36, 0.65), 0 0 2px #fbbf24;
+}
+.theme-warm .bwbox input::placeholder {
+  color: rgba(251, 191, 36, 0.25);
+}
+.theme-warm .bwbox .unit {
+  color: #f59e0b;
+  text-shadow: 0 0 5px rgba(245, 158, 11, 0.6);
+}
+.theme-warm .steps button {
+  background: linear-gradient(180deg, #44403c 0%, #292524 100%);
+  border-color: #57534e;
+  box-shadow: 0 2px 0 #0c0a09, 0 3px 4px rgba(0, 0, 0, 0.3);
+}
+.theme-warm .steps button:hover {
+  color: #fbbf24;
 }
 
 /* Search Bar */
@@ -1314,23 +1370,34 @@ main {
   }
 
   .bwbox {
-    padding: 3px 8px;
+    padding: 3px 6px;
     flex: none;
+    border-radius: 8px;
   }
 
   .bwbox label {
-    font-size: 12.5px;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+  }
+
+  .bw-input-wrap {
+    padding: 1px 5px;
   }
 
   .bwbox input {
-    width: 52px;
+    width: 56px;
     font-size: 19px;
+    letter-spacing: 1px;
+  }
+
+  .bwbox .unit {
+    font-size: 11px;
   }
 
   .steps button {
-    width: 26px;
-    height: 26px;
-    font-size: 15px;
+    width: 25px;
+    height: 25px;
+    font-size: 14px;
   }
 
   .search-wrap {
