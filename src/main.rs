@@ -135,36 +135,38 @@ fn app() -> Html {
         <div class={classes!("app-root", themes[*theme_idx])}>
             <header>
                 <div class="hwrap">
-                    <div class="row1">
-                        <button id="menuBtn" class="menu" type="button" aria-label="切換分類選單" aria-expanded={if *drawer_open { "true" } else { "false" }} onclick={toggle_drawer}>
-                            <span class="menu-icon">{"☰"}</span>
-                            <span class="menu-text">{"分類"}</span>
-                        </button>
-                        <div class="brand">
-                            <span class="brand-badge">{"PedsRx"}</span>
-                            <h1>{"兒科常用藥"}<span>{"劑量查詢"}</span></h1>
-                        </div>
-                        <div class="header-controls">
-                            <div class="bwbox">
-                                <label for="bw">{"體重"}</label>
-                                <div class="bw-input-wrap">
-                                    <input id="bw" type="number" inputmode="decimal" step="0.5" min="0" max="120" placeholder="—" 
-                                        value={weight.map(|v| v.to_string()).unwrap_or_default()}
-                                        oninput={on_weight_input} />
-                                    <span class="unit">{"kg"}</span>
-                                </div>
-                                <div class="steps">
-                                    <button type="button" title="體重 -1 kg" onclick={on_bump(-1.0)}>{"−"}</button>
-                                    <button type="button" title="體重 +1 kg" onclick={on_bump(1.0)}>{"＋"}</button>
-                                </div>
-                            </div>
-                            <div class="search-wrap">
-                                <span class="search-icon">{"🔍"}</span>
-                                <input id="q" type="search" placeholder="搜尋藥名、學名、適應症、症狀..." oninput={on_search_input} value={(*search_query).clone()} />
-                            </div>
-                            <button type="button" class="theme-toggle-btn" title="切換配色模式 (柔和護眼 / 暖米色調 / 深色夜間)" onclick={toggle_theme}>
-                                {theme_labels[*theme_idx]}
+                    <div class="header-nav-row">
+                        <div class="header-brand-group">
+                            <button id="menuBtn" class="menu" type="button" aria-label="切換分類選單" aria-expanded={if *drawer_open { "true" } else { "false" }} onclick={toggle_drawer}>
+                                <span class="menu-icon">{"☰"}</span>
+                                <span class="menu-text">{"分類"}</span>
                             </button>
+                            <div class="brand">
+                                <span class="brand-badge">{"PedsRx"}</span>
+                                <h1>{"兒科常用藥"}<span>{"劑量查詢"}</span></h1>
+                            </div>
+                        </div>
+                        <button type="button" class="theme-toggle-btn" title="切換配色模式 (柔和護眼 / 暖米色調 / 深色夜間)" onclick={toggle_theme}>
+                            {theme_labels[*theme_idx]}
+                        </button>
+                    </div>
+                    <div class="header-tools-row">
+                        <div class="bwbox">
+                            <label for="bw">{"體重"}</label>
+                            <div class="bw-input-wrap">
+                                <input id="bw" type="number" inputmode="decimal" step="0.5" min="0" max="120" placeholder="—" 
+                                    value={weight.map(|v| v.to_string()).unwrap_or_default()}
+                                    oninput={on_weight_input} />
+                                <span class="unit">{"kg"}</span>
+                            </div>
+                            <div class="steps">
+                                <button type="button" title="體重 -1 kg" onclick={on_bump(-1.0)}>{"−"}</button>
+                                <button type="button" title="體重 +1 kg" onclick={on_bump(1.0)}>{"＋"}</button>
+                            </div>
+                        </div>
+                        <div class="search-wrap">
+                            <span class="search-icon">{"🔍"}</span>
+                            <input id="q" type="search" placeholder="搜尋藥名、學名、適應症、症狀..." oninput={on_search_input} value={(*search_query).clone()} />
                         </div>
                     </div>
                 </div>

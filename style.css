@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Eye-Care Color Palettes & Themes (柔和護眼 / 暖米紙感 / 深色夜間)
+   Eye-Care Color Palettes & Responsive Mobile Stylesheet
    ========================================================================== */
 
 /* 預設：柔和護眼灰 (Soft Eye-Care Slate) - 降低亮度，徹底消除螢幕刺眼白光 */
@@ -138,7 +138,7 @@ body {
 }
 
 /* ==========================================================================
-   Header & Navigation Controls
+   Header & Responsive Navigation
    ========================================================================== */
 header {
   position: sticky;
@@ -156,13 +156,22 @@ header {
   max-width: 1440px;
   margin: 0 auto;
   padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
 }
 
-.row1 {
+.header-nav-row {
   display: flex;
   align-items: center;
   gap: 16px;
-  flex-wrap: wrap;
+}
+
+.header-brand-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .brand {
@@ -195,13 +204,12 @@ h1 span {
   font-weight: 600;
 }
 
-.header-controls {
+.header-tools-row {
   display: flex;
   align-items: center;
   gap: 12px;
   flex: 1;
-  min-width: 280px;
-  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 /* Weight Input Box */
@@ -295,7 +303,7 @@ h1 span {
 .search-wrap {
   position: relative;
   flex: 1;
-  min-width: 180px;
+  max-width: 380px;
   display: flex;
   align-items: center;
 }
@@ -364,13 +372,13 @@ h1 span {
   display: none;
   align-items: center;
   gap: 6px;
-  border: 1px solid var(--line);
+  border: 1.5px solid var(--line);
   background: var(--card);
   color: var(--ink);
   border-radius: var(--radius-md);
   padding: 6px 12px;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
 }
 
@@ -564,13 +572,7 @@ main {
 .grid {
   display: grid;
   gap: 16px;
-  grid-template-columns: 1fr;
-}
-
-@media (min-width: 740px) {
-  .grid {
-    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-  }
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
 }
 
 /* ==========================================================================
@@ -918,7 +920,7 @@ main {
 }
 
 /* ==========================================================================
-   Utilities & Responsiveness
+   Utilities & Common State
    ========================================================================== */
 .hide {
   display: none !important;
@@ -932,9 +934,35 @@ main {
   font-weight: 600;
 }
 
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS (螢幕自適應排版)
+   ========================================================================== */
+
+/* 平板 & 較窄螢幕 (Tablets & Medium Screens <= 960px) */
 @media (max-width: 960px) {
+  .hwrap {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 10px 14px;
+    gap: 10px;
+  }
+
+  .header-nav-row {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .header-tools-row {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .search-wrap {
+    max-width: none;
+  }
+
   .menu {
-    display: flex;
+    display: inline-flex;
   }
 
   aside#toc {
@@ -943,14 +971,14 @@ main {
     left: 0;
     height: 100dvh;
     max-height: none;
-    width: 280px;
+    width: min(300px, 85vw);
     z-index: 300;
     border-radius: 0;
     border-right: 1px solid var(--line);
-    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.2);
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.25);
     transform: translateX(-100%);
     transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1);
-    padding: 20px 14px 40px;
+    padding: 20px 14px calc(20px + env(safe-area-inset-bottom));
   }
 
   aside#toc.open {
@@ -965,7 +993,7 @@ main {
     display: block;
     position: fixed;
     inset: 0;
-    background: rgba(15, 23, 42, 0.5);
+    background: rgba(15, 23, 42, 0.55);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     z-index: 250;
@@ -977,5 +1005,121 @@ main {
   #backdrop.on {
     opacity: 1;
     pointer-events: auto;
+  }
+
+  .shell {
+    padding: 12px 14px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  }
+}
+
+/* 手機直向螢幕 (Mobile Phones <= 640px) */
+@media (max-width: 640px) {
+  .hwrap {
+    padding: 8px 12px;
+    gap: 8px;
+  }
+
+  h1 {
+    font-size: 16px;
+  }
+
+  .brand-badge {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+
+  .theme-toggle-btn {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  .header-tools-row {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .bwbox {
+    padding: 3px 8px;
+    flex: none;
+  }
+
+  .bwbox label {
+    font-size: 12.5px;
+  }
+
+  .bwbox input {
+    width: 52px;
+    font-size: 19px;
+  }
+
+  .steps button {
+    width: 26px;
+    height: 26px;
+    font-size: 15px;
+  }
+
+  .search-wrap {
+    flex: 1;
+    min-width: 0;
+  }
+
+  #q {
+    font-size: 13.5px;
+    padding: 7px 10px 7px 30px;
+  }
+
+  .search-icon {
+    left: 10px;
+    font-size: 12px;
+  }
+
+  .shell {
+    padding: 10px 10px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .card {
+    padding: 14px 14px;
+    border-radius: var(--radius-md);
+    gap: 8px;
+  }
+
+  .dn {
+    font-size: 16px;
+  }
+
+  .dose {
+    padding: 8px 12px;
+  }
+
+  .dose .big {
+    font-size: 20px;
+  }
+}
+
+/* 超窄螢幕手機 (Small Phones <= 400px) */
+@media (max-width: 400px) {
+  .header-tools-row {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .bwbox {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .search-wrap {
+    width: 100%;
   }
 }
