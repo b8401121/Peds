@@ -355,9 +355,16 @@ fn app() -> Html {
                                             calc_html = html! {};
                                         }
 
-                                        let is_inj = rt == "針劑";
+                                        let (card_rt_cls, badge_rt_cls) = match rt.as_str() {
+                                            "針劑" | "錠／針" => ("card-inj", "rt-inj"),
+                                            "外用" => ("card-topical", "rt-topical"),
+                                            "栓劑" | "灌腸" => ("card-rectal", "rt-rectal"),
+                                            "吸入" => ("card-inhal", "rt-inhal"),
+                                            _ => ("card-oral", "rt-oral"),
+                                        };
+
                                         let hl = n.starts_with('★');
-                                        let card_cls = classes!("card", if !hit { "hide" } else { "" }, if is_inj { "inj" } else { "" }, if hl { "hl" } else { "" });
+                                        let card_cls = classes!("card", if !hit { "hide" } else { "" }, card_rt_cls, if hl { "hl" } else { "" });
 
                                         html! {
                                             <article class={card_cls}>
@@ -365,7 +372,7 @@ fn app() -> Html {
                                                     <h3 class="dn">
                                                         <span>{n.clone()}</span>
                                                         if !rt.is_empty() { 
-                                                            <span class={classes!("rt", if is_inj { "rt-inj" } else { "rt-std" })}>{rt.clone()}</span> 
+                                                            <span class={classes!("rt", badge_rt_cls)}>{rt.clone()}</span> 
                                                         }
                                                     </h3>
                                                     if !s.is_empty() { <p class="dsub">{safe_html(&s)}</p> }

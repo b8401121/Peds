@@ -26,9 +26,25 @@
   --danger-bg: #fff1f2;
   --danger-border: #fecdd3;
 
-  --inj: #6366f1;
-  --inj-soft: #eef2ff;
-  --inj-border: #c7d2fe;
+  --inj: #7c3aed;
+  --inj-soft: #f5f3ff;
+  --inj-border: #ddd6fe;
+
+  --oral: #0284c7;
+  --oral-soft: #f0f9ff;
+  --oral-border: #bae6fd;
+
+  --topical: #059669;
+  --topical-soft: #ecfdf5;
+  --topical-border: #a7f3d0;
+
+  --rectal: #ea580c;
+  --rectal-soft: #fff7ed;
+  --rectal-border: #fed7aa;
+
+  --inhal: #0891b2;
+  --inhal-soft: #ecfeff;
+  --inhal-border: #a5f3fc;
 
   --route-std: #f1f5f9;
   --route-std-text: #475569;
@@ -73,6 +89,22 @@
   --inj-soft: #f5f3ff;
   --inj-border: #ddd6fe;
 
+  --oral: #b45309;
+  --oral-soft: #fef3c7;
+  --oral-border: #fde68a;
+
+  --topical: #047857;
+  --topical-soft: #f0fdf4;
+  --topical-border: #bbf7d0;
+
+  --rectal: #c2410c;
+  --rectal-soft: #fff7ed;
+  --rectal-border: #ffedd5;
+
+  --inhal: #0e7490;
+  --inhal-soft: #f0fdfa;
+  --inhal-border: #99f6e4;
+
   --route-std: #e7dfd3;
   --route-std-text: #57534e;
 
@@ -107,6 +139,22 @@
   --inj: #a5b4fc;
   --inj-soft: #1e1b4b;
   --inj-border: #4338ca;
+
+  --oral: #38bdf8;
+  --oral-soft: #082f49;
+  --oral-border: #0369a1;
+
+  --topical: #34d399;
+  --topical-soft: #064e3b;
+  --topical-border: #047857;
+
+  --rectal: #fb923c;
+  --rectal-soft: #431407;
+  --rectal-border: #9a3412;
+
+  --inhal: #22d3ee;
+  --inhal-soft: #164e63;
+  --inhal-border: #0891b2;
 
   --route-std: #334155;
   --route-std-text: #e2e8f0;
@@ -601,10 +649,25 @@ main {
   box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.15);
 }
 
-/* Injection Drug Card */
-.card.inj {
-  background: var(--card);
+/* Route Borders for Cards (5px Left Accent Bar) */
+.card.card-inj {
   border-left: 5px solid var(--inj);
+}
+
+.card.card-topical {
+  border-left: 5px solid var(--topical);
+}
+
+.card.card-rectal {
+  border-left: 5px solid var(--rectal);
+}
+
+.card.card-inhal {
+  border-left: 5px solid var(--inhal);
+}
+
+.card.card-oral {
+  border-left: 5px solid var(--oral);
 }
 
 /* Card Header */
@@ -635,15 +698,34 @@ main {
   white-space: nowrap;
 }
 
-.rt-std {
-  background: var(--route-std);
-  color: var(--route-std-text);
-}
-
-.rt-inj {
+.rt.rt-inj {
   background: var(--inj-soft);
   color: var(--inj);
   border: 1px solid var(--inj-border);
+}
+
+.rt.rt-topical {
+  background: var(--topical-soft);
+  color: var(--topical);
+  border: 1px solid var(--topical-border);
+}
+
+.rt.rt-rectal {
+  background: var(--rectal-soft);
+  color: var(--rectal);
+  border: 1px solid var(--rectal-border);
+}
+
+.rt.rt-inhal {
+  background: var(--inhal-soft);
+  color: var(--inhal);
+  border: 1px solid var(--inhal-border);
+}
+
+.rt.rt-oral {
+  background: var(--oral-soft);
+  color: var(--oral);
+  border: 1px solid var(--oral-border);
 }
 
 .dsub {
