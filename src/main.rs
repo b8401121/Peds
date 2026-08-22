@@ -115,7 +115,6 @@ fn app() -> Html {
                             <button type="button" onclick={on_bump(1.0)}>{"＋"}</button>
                         </div>
                         <input id="q" type="search" placeholder="搜尋藥名 / 症狀" oninput={on_search_input} value={(*search_query).clone()} />
-                        <a class="contact" href="mailto:peds@tmuhpeds.info">{"✉ 回報問題"}<span class="cl">{"　peds@tmuhpeds.info"}</span></a>
                     </div>
                 </div>
             </header>
