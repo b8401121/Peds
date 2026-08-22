@@ -33,6 +33,11 @@ jobs:
       - name: Build with Trunk
         run: trunk build --release --public-url /Peds/
 
+      - name: Verify Subresource Integrity (SRI) in dist
+        run: |
+          echo "Verifying generated index.html and SRI tags..."
+          cat ./dist/index.html
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

@@ -5,17 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>兒科常用藥快速查詢</title>
     <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
-    <meta name="theme-color" content="#0f6fbe">
+    <meta name="theme-color" content="#3a7ca5">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="兒科藥">
     <base data-trunk-public-url />
-    <link data-trunk rel="css" href="style.css">
-    
-    <!-- Use standard copy-file and reference it with data-trunk to rewrite URL -->
-    <link data-trunk rel="copy-file" href="data.js">
+    <link data-trunk rel="rust" data-integrity="sha384" />
+    <link data-trunk rel="css" href="style.css" data-integrity="sha384" />
+    <script data-trunk src="data.js" data-integrity="sha384"></script>
 </head>
 <body>
-    <script src="data.js"></script>
     <div id="app"></div>
 </body>
 </html>
