@@ -142,7 +142,24 @@ fn app() -> Html {
                                 <span class="menu-text">{"分類"}</span>
                             </button>
                             <div class="brand">
-                                <span class="brand-badge">{"PedsRx"}</span>
+                                <div class="pikachu-logo" title="皮卡丘 兒科常用藥">
+                                    <svg viewBox="0 0 100 100" class="pika-svg" width="34" height="34" aria-label="皮卡丘 Logo">
+                                        <polygon points="25,45 10,5 38,25" fill="#facc15" stroke="#ca8a04" stroke-width="2"/>
+                                        <polygon points="25,45 10,5 18,15" fill="#1e293b"/>
+                                        <polygon points="75,45 90,5 62,25" fill="#facc15" stroke="#ca8a04" stroke-width="2"/>
+                                        <polygon points="75,45 90,5 82,15" fill="#1e293b"/>
+                                        <circle cx="50" cy="60" r="34" fill="#facc15" stroke="#ca8a04" stroke-width="2"/>
+                                        <circle cx="26" cy="68" r="7.5" fill="#ef4444"/>
+                                        <circle cx="74" cy="68" r="7.5" fill="#ef4444"/>
+                                        <circle cx="36" cy="54" r="5" fill="#1e293b"/>
+                                        <circle cx="34.5" cy="52.5" r="2" fill="#ffffff"/>
+                                        <circle cx="64" cy="54" r="5" fill="#1e293b"/>
+                                        <circle cx="62.5" cy="52.5" r="2" fill="#ffffff"/>
+                                        <polygon points="50,60 48,58 52,58" fill="#1e293b"/>
+                                        <path d="M 43,65 Q 46.5,69 50,65 Q 53.5,69 57,65" fill="none" stroke="#1e293b" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
+                                    <span class="pika-bolt">{"⚡"}</span>
+                                </div>
                                 <h1>{"兒科常用藥"}<span>{"劑量查詢"}</span></h1>
                             </div>
                         </div>
