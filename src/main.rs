@@ -20,6 +20,17 @@ fn safe_html(html_str: &str) -> Html {
     Html::from_html_unchecked(AttrValue::from(wrapped))
 }
 
+fn split_title(c: &str) -> (String, String) {
+    if let Some(idx) = c.find(' ') {
+        let (zh, rest) = c.split_at(idx);
+        let en = rest.trim();
+        if en.starts_with(|ch: char| ch.is_ascii_alphabetic()) {
+            return (zh.to_string(), en.to_string());
+        }
+    }
+    (c.to_string(), String::new())
+}
+
 #[function_component(App)]
 fn app() -> Html {
     let weight = use_state(|| None::<f64>);
@@ -89,6 +100,18 @@ fn app() -> Html {
     let toc_array = Array::from(&peds_toc_val);
     let data_array = Array::from(&peds_data_val);
 
+    let total_drugs: u32 = (0..data_array.length())
+        .map(|i| {
+            let sec = data_array.get(i);
+            let d_val = Reflect::get(&sec, &JsValue::from_str("d")).unwrap_or(JsValue::UNDEFINED);
+            if d_val.is_array() {
+                Array::from(&d_val).length()
+            } else {
+                0
+            }
+        })
+        .sum();
+
     // Filter logic
     let q = (*search_query).clone();
     let searching = !q.trim().is_empty();
@@ -149,7 +172,11 @@ fn app() -> Html {
                                 close.emit(e);
                             })
                         }>
-                            <span class="tn">{"🌟 全部藥物"}</span>
+                            <span class="tn">
+                                {"全部藥物"}
+                                <span class="te">{"ALL"}</span>
+                            </span>
+                            <span class="tc">{total_drugs}</span>
                         </button>
                         {
                             for (0..toc_array.length()).map(|i| {
@@ -166,6 +193,9 @@ fn app() -> Html {
                                                 let data_idx = idx_arr.get(j).as_f64().unwrap() as i32;
                                                 let sec = data_array.get(data_idx as u32);
                                                 let c = Reflect::get(&sec, &JsValue::from_str("c")).unwrap().as_string().unwrap_or_default();
+                                                let d_val = Reflect::get(&sec, &JsValue::from_str("d")).unwrap_or(JsValue::UNDEFINED);
+                                                let d_count = if d_val.is_array() { Array::from(&d_val).length() } else { 0 };
+                                                let (zh, en) = split_title(&c);
                                                 
                                                 let selected_category = selected_category.clone();
                                                 let search_query = search_query.clone();
@@ -178,7 +208,11 @@ fn app() -> Html {
                                                 
                                                 html! {
                                                     <button class={classes!("tocitem", if !searching && cat == data_idx { "on" } else { "" })} onclick={onclick}>
-                                                        <span class="tn">{c}</span>
+                                                        <span class="tn">
+                                                            {zh}
+                                                            if !en.is_empty() { <span class="te">{en}</span> }
+                                                        </span>
+                                                        <span class="tc">{d_count}</span>
                                                     </button>
                                                 }
                                             })
