@@ -69,9 +69,20 @@ fn app() -> Html {
         })
     };
 
-    // Calculate TOC
-    let toc_array = PEDS_TOC.with(|v| Array::from(v));
-    let data_array = PEDS_DATA.with(|v| Array::from(v));
+    let peds_toc_val = PEDS_TOC.with(|v| v.clone());
+    let peds_data_val = PEDS_DATA.with(|v| v.clone());
+
+    if peds_data_val.is_undefined() || peds_toc_val.is_undefined() {
+        return html! {
+            <div style="padding: 20px; color: red;">
+                <h2>{"錯誤：找不到藥物資料 (data.js 載入失敗)"}</h2>
+                <p>{"請確認 data.js 是否有正確載入。"}</p>
+            </div>
+        };
+    }
+
+    let toc_array = Array::from(&peds_toc_val);
+    let data_array = Array::from(&peds_data_val);
 
     // Filter logic
     let q = (*search_query).clone();

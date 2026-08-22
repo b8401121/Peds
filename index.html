@@ -8,11 +8,14 @@
     <meta name="theme-color" content="#0f6fbe">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="兒科藥">
+    <base data-trunk-public-url />
     <link data-trunk rel="css" href="style.css">
+    
+    <!-- Use standard copy-file and reference it with data-trunk to rewrite URL -->
     <link data-trunk rel="copy-file" href="data.js">
-    <script src="data.js"></script>
 </head>
 <body>
+    <script src="data.js"></script>
     <div id="app"></div>
 </body>
 </html>
