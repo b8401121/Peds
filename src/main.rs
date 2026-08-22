@@ -101,27 +101,43 @@ fn app() -> Html {
             <header>
                 <div class="hwrap">
                     <div class="row1">
-                        <button id="menuBtn" class="menu" type="button" aria-expanded={if *drawer_open { "true" } else { "false" }} onclick={toggle_drawer}>{"☰"}</button>
-                        <h1>{"兒科"}<span>{"常用藥"}</span></h1>
-                        <div class="bwbox">
-                            <label for="bw">{"體重"}</label>
-                            <input id="bw" type="number" inputmode="decimal" step="0.5" min="0" max="120" placeholder="—" 
-                                value={weight.map(|v| v.to_string()).unwrap_or_default()}
-                                oninput={on_weight_input} />
-                            <span class="unit">{"kg"}</span>
+                        <button id="menuBtn" class="menu" type="button" aria-label="切換分類選單" aria-expanded={if *drawer_open { "true" } else { "false" }} onclick={toggle_drawer}>
+                            <span class="menu-icon">{"☰"}</span>
+                            <span class="menu-text">{"分類"}</span>
+                        </button>
+                        <div class="brand">
+                            <span class="brand-badge">{"PedsRx"}</span>
+                            <h1>{"兒科常用藥"}<span>{"劑量查詢"}</span></h1>
                         </div>
-                        <div class="steps">
-                            <button type="button" onclick={on_bump(-1.0)}>{"−"}</button>
-                            <button type="button" onclick={on_bump(1.0)}>{"＋"}</button>
+                        <div class="header-controls">
+                            <div class="bwbox">
+                                <label for="bw">{"體重"}</label>
+                                <div class="bw-input-wrap">
+                                    <input id="bw" type="number" inputmode="decimal" step="0.5" min="0" max="120" placeholder="—" 
+                                        value={weight.map(|v| v.to_string()).unwrap_or_default()}
+                                        oninput={on_weight_input} />
+                                    <span class="unit">{"kg"}</span>
+                                </div>
+                                <div class="steps">
+                                    <button type="button" title="體重 -1 kg" onclick={on_bump(-1.0)}>{"−"}</button>
+                                    <button type="button" title="體重 +1 kg" onclick={on_bump(1.0)}>{"＋"}</button>
+                                </div>
+                            </div>
+                            <div class="search-wrap">
+                                <span class="search-icon">{"🔍"}</span>
+                                <input id="q" type="search" placeholder="搜尋藥名、學名、適應症、症狀..." oninput={on_search_input} value={(*search_query).clone()} />
+                            </div>
                         </div>
-                        <input id="q" type="search" placeholder="搜尋藥名 / 症狀" oninput={on_search_input} value={(*search_query).clone()} />
                     </div>
                 </div>
             </header>
 
             <div class="shell">
                 <aside id="toc" class={if *drawer_open { "open" } else { "" }}>
-                    <div class="tochd"><span>{"分類"}</span><button id="tocX" type="button" onclick={close_drawer.clone()}>{"✕"}</button></div>
+                    <div class="tochd">
+                        <span>{"藥物分類目錄"}</span>
+                        <button id="tocX" type="button" aria-label="關閉選單" onclick={close_drawer.clone()}>{"✕"}</button>
+                    </div>
                     <nav id="tocnav">
                         <button class={classes!("tocitem", if !searching && cat == -1 { "on" } else { "" })} onclick={
                             let selected_category = selected_category.clone();
@@ -133,7 +149,7 @@ fn app() -> Html {
                                 close.emit(e);
                             })
                         }>
-                            <span class="tn">{"全部"}</span>
+                            <span class="tn">{"🌟 全部藥物"}</span>
                         </button>
                         {
                             for (0..toc_array.length()).map(|i| {
@@ -216,7 +232,12 @@ fn app() -> Html {
                                             Some(Array::from(&r_val))
                                         };
 
-                                        let mut calc_html = html! { <p class="nobw">{"↑ 輸入體重後自動計算"}</p> };
+                                        let mut calc_html = html! { 
+                                            <div class="nobw">
+                                                <span class="nobw-icon">{"⚖️"}</span>
+                                                <span>{"請於上方輸入體重進行精算"}</span>
+                                            </div> 
+                                        };
                                         let calc_val = Reflect::get(&drug, &JsValue::from_str("calc")).unwrap_or(JsValue::NULL);
                                         
                                         if calc_val.is_function() {
@@ -228,45 +249,53 @@ fn app() -> Html {
                                                         let mains = (0..rows.length()).filter(|&idx| {
                                                             let row = rows.get(idx);
                                                             let sub = Reflect::get(&row, &JsValue::from_str("sub"))
-                                                                .ok()
-                                                                .and_then(|v| v.as_bool())
+                                                                .unwrap_or(JsValue::UNDEFINED)
+                                                                .as_bool()
                                                                 .unwrap_or(false);
                                                             !sub
                                                         }).count();
                                                         
                                                         let mut seen = 0;
                                                         calc_html = html! {
-                                                            for (0..rows.length()).map(|idx| {
-                                                                let row = rows.get(idx);
-                                                                let lbl = Reflect::get(&row, &JsValue::from_str("lbl")).unwrap_or(JsValue::UNDEFINED).as_string().unwrap_or_default();
-                                                                let big = Reflect::get(&row, &JsValue::from_str("big")).unwrap_or(JsValue::UNDEFINED).as_string().unwrap_or_default();
-                                                                let freq = Reflect::get(&row, &JsValue::from_str("freq")).unwrap_or(JsValue::UNDEFINED).as_string().unwrap_or_default();
-                                                                let flag = Reflect::get(&row, &JsValue::from_str("flag")).unwrap_or(JsValue::UNDEFINED).as_string().filter(|s| !s.is_empty());
-                                                                let sub = Reflect::get(&row, &JsValue::from_str("sub")).unwrap_or(JsValue::UNDEFINED).as_bool().unwrap_or(false);
-                                                                
-                                                                if sub {
-                                                                    html! {
-                                                                        <div class="dose sub">
-                                                                            <span class="lbl">{lbl}</span>
-                                                                            <span class="big">{safe_html(&big)}</span>
-                                                                            if !freq.is_empty() { <span class="freq">{freq}</span> }
-                                                                            if let Some(fg) = flag { <span class="flag cap">{format!("⚠ {}", fg)}</span> }
-                                                                        </div>
+                                                            <div class="dose-container">
+                                                            {
+                                                                for (0..rows.length()).map(|idx| {
+                                                                    let row = rows.get(idx);
+                                                                    let lbl = Reflect::get(&row, &JsValue::from_str("lbl")).unwrap_or(JsValue::UNDEFINED).as_string().unwrap_or_default();
+                                                                    let big = Reflect::get(&row, &JsValue::from_str("big")).unwrap_or(JsValue::UNDEFINED).as_string().unwrap_or_default();
+                                                                    let freq = Reflect::get(&row, &JsValue::from_str("freq")).unwrap_or(JsValue::UNDEFINED).as_string().unwrap_or_default();
+                                                                    let flag = Reflect::get(&row, &JsValue::from_str("flag")).unwrap_or(JsValue::UNDEFINED).as_string().filter(|s| !s.is_empty());
+                                                                    let sub = Reflect::get(&row, &JsValue::from_str("sub")).unwrap_or(JsValue::UNDEFINED).as_bool().unwrap_or(false);
+                                                                    
+                                                                    if sub {
+                                                                        html! {
+                                                                            <div class="dose sub">
+                                                                                <span class="lbl">{lbl}</span>
+                                                                                <span class="big">{safe_html(&big)}</span>
+                                                                                if !freq.is_empty() { <span class="freq">{freq}</span> }
+                                                                                if let Some(fg) = flag { <span class="flag cap">{format!("⚠ {}", fg)}</span> }
+                                                                            </div>
+                                                                        }
+                                                                    } else {
+                                                                        let mut cls = "dose".to_string();
+                                                                        if mains > 2 && seen > 0 { cls.push_str(" sm"); }
+                                                                        seen += 1;
+                                                                        html! {
+                                                                            <div class={cls}>
+                                                                                <div class="dose-header">
+                                                                                    <span class="lbl">{lbl}</span>
+                                                                                    if !freq.is_empty() { <span class="freq-tag">{freq}</span> }
+                                                                                </div>
+                                                                                <div class="dose-body">
+                                                                                    <div class="big">{safe_html(&big)}</div>
+                                                                                    if let Some(fg) = flag { <div class="flag cap">{format!("⚠ {}", fg)}</div> }
+                                                                                </div>
+                                                                            </div>
+                                                                        }
                                                                     }
-                                                                } else {
-                                                                    let mut cls = "dose".to_string();
-                                                                    if mains > 2 && seen > 0 { cls.push_str(" sm"); }
-                                                                    seen += 1;
-                                                                    html! {
-                                                                        <div class={cls}>
-                                                                            <span class="lbl">{lbl}</span>
-                                                                            <div class="big">{safe_html(&big)}</div>
-                                                                            if !freq.is_empty() { <div class="freq">{freq}</div> }
-                                                                            if let Some(fg) = flag { <span class="flag cap">{format!("⚠ {}", fg)}</span> }
-                                                                        </div>
-                                                                    }
-                                                                }
-                                                            })
+                                                                })
+                                                            }
+                                                            </div>
                                                         };
                                                     }
                                                 }
@@ -281,36 +310,55 @@ fn app() -> Html {
 
                                         html! {
                                             <article class={card_cls}>
-                                                <p class="dn">{n.clone()} if !rt.is_empty() { <span class={classes!("rt", if is_inj { "inj" } else { "" })}>{rt.clone()}</span> }</p>
-                                                if !s.is_empty() { <p class="dsub">{safe_html(&s)}</p> }
-                                                if !w.is_empty() { <p class="warnbox">{safe_html(&format!("⚠ {}", w))}</p> }
-                                                if !wm.is_empty() { <p class="warnbox mild">{safe_html(&format!("※ {}", wm))}</p> }
+                                                <div class="card-head">
+                                                    <h3 class="dn">
+                                                        <span>{n.clone()}</span>
+                                                        if !rt.is_empty() { 
+                                                            <span class={classes!("rt", if is_inj { "rt-inj" } else { "rt-std" })}>{rt.clone()}</span> 
+                                                        }
+                                                    </h3>
+                                                    if !s.is_empty() { <p class="dsub">{safe_html(&s)}</p> }
+                                                </div>
+
+                                                if !w.is_empty() { <div class="warnbox">{safe_html(&format!("⚠ {}", w))}</div> }
+                                                if !wm.is_empty() { <div class="warnbox mild">{safe_html(&format!("※ {}", wm))}</div> }
                                                 
                                                 <div class="out">{calc_html}</div>
                                                 
                                                 <div class="meta">
-                                                    <div><span class="f">{f}</span></div>
-                                                    {
-                                                        for (0..m_arr.length()).map(|idx| {
-                                                            let m_str = m_arr.get(idx).as_string().unwrap_or_default();
-                                                            html! { <div>{safe_html(&m_str)}</div> }
-                                                        })
+                                                    if !f.is_empty() {
+                                                        <div class="meta-formula">
+                                                            <span class="formula-label">{"公式"}</span>
+                                                            <span class="f">{f}</span>
+                                                        </div>
                                                     }
-                                                    if let Some(refs) = r_arr {
-                                                        <div class="refs">{"來源："}
+                                                    if m_arr.length() > 0 {
+                                                        <div class="meta-notes">
                                                         {
-                                                            for (0..refs.length()).map(|idx| {
-                                                                let ref_item = Array::from(&refs.get(idx));
-                                                                let ref_name = ref_item.get(0).as_string().unwrap_or_default();
-                                                                let ref_link = ref_item.get(1).as_string().unwrap_or_default();
-                                                                html! {
-                                                                    <>
-                                                                        if idx > 0 { {" ・ "} }
-                                                                        <a href={ref_link} target="_blank" rel="noopener noreferrer">{ref_name}</a>
-                                                                    </>
-                                                                }
+                                                            for (0..m_arr.length()).map(|idx| {
+                                                                let m_str = m_arr.get(idx).as_string().unwrap_or_default();
+                                                                html! { <div class="note-item"><span class="bullet">{"•"}</span><span class="note-text">{safe_html(&m_str)}</span></div> }
                                                             })
                                                         }
+                                                        </div>
+                                                    }
+                                                    if let Some(refs) = r_arr {
+                                                        <div class="refs">
+                                                            <span class="refs-label">{"📚 來源"}</span>
+                                                            <div class="refs-links">
+                                                            {
+                                                                for (0..refs.length()).map(|idx| {
+                                                                    let ref_item = Array::from(&refs.get(idx));
+                                                                    let ref_name = ref_item.get(0).as_string().unwrap_or_default();
+                                                                    let ref_link = ref_item.get(1).as_string().unwrap_or_default();
+                                                                    html! {
+                                                                        <a class="ref-tag" href={ref_link} target="_blank" rel="noopener noreferrer">
+                                                                            {ref_name}
+                                                                        </a>
+                                                                    }
+                                                                })
+                                                            }
+                                                            </div>
                                                         </div>
                                                     }
                                                 </div>
