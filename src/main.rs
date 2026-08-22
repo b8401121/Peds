@@ -15,6 +15,11 @@ extern "C" {
 #[derive(Properties, PartialEq)]
 struct AppProps {}
 
+fn safe_html(html_str: &str) -> Html {
+    let wrapped = format!("<span>{}</span>", html_str);
+    Html::from_html_unchecked(AttrValue::from(wrapped))
+}
+
 #[function_component(App)]
 fn app() -> Html {
     let weight = use_state(|| None::<f64>);
@@ -245,7 +250,7 @@ fn app() -> Html {
                                                                     html! {
                                                                         <div class="dose sub">
                                                                             <span class="lbl">{lbl}</span>
-                                                                            <span class="big" dangerously_set_inner_html={big} />
+                                                                            <span class="big">{safe_html(&big)}</span>
                                                                             if !freq.is_empty() { <span class="freq">{freq}</span> }
                                                                             if let Some(fg) = flag { <span class="flag cap">{format!("⚠ {}", fg)}</span> }
                                                                         </div>
@@ -257,7 +262,7 @@ fn app() -> Html {
                                                                     html! {
                                                                         <div class={cls}>
                                                                             <span class="lbl">{lbl}</span>
-                                                                            <div class="big" dangerously_set_inner_html={big} />
+                                                                            <div class="big">{safe_html(&big)}</div>
                                                                             if !freq.is_empty() { <div class="freq">{freq}</div> }
                                                                             if let Some(fg) = flag { <span class="flag cap">{format!("⚠ {}", fg)}</span> }
                                                                         </div>
@@ -279,9 +284,9 @@ fn app() -> Html {
                                         html! {
                                             <article class={card_cls}>
                                                 <p class="dn">{n.clone()} if !rt.is_empty() { <span class={classes!("rt", if is_inj { "inj" } else { "" })}>{rt.clone()}</span> }</p>
-                                                if !s.is_empty() { <p class="dsub" dangerously_set_inner_html={s.clone()} /> }
-                                                if !w.is_empty() { <p class="warnbox" dangerously_set_inner_html={format!("⚠ {}", w)} /> }
-                                                if !wm.is_empty() { <p class="warnbox mild" dangerously_set_inner_html={format!("※ {}", wm)} /> }
+                                                if !s.is_empty() { <p class="dsub">{safe_html(&s)}</p> }
+                                                if !w.is_empty() { <p class="warnbox">{safe_html(&format!("⚠ {}", w))}</p> }
+                                                if !wm.is_empty() { <p class="warnbox mild">{safe_html(&format!("※ {}", wm))}</p> }
                                                 
                                                 <div class="out">{calc_html}</div>
                                                 
@@ -290,7 +295,7 @@ fn app() -> Html {
                                                     {
                                                         for (0..m_arr.length()).map(|idx| {
                                                             let m_str = m_arr.get(idx).as_string().unwrap_or_default();
-                                                            html! { <div dangerously_set_inner_html={m_str} /> }
+                                                            html! { <div>{safe_html(&m_str)}</div> }
                                                         })
                                                     }
                                                     if let Some(refs) = r_arr {
