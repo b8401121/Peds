@@ -102,7 +102,6 @@ fn app() -> Html {
                 <div class="hwrap">
                     <div class="row1">
                         <button id="menuBtn" class="menu" type="button" aria-expanded={if *drawer_open { "true" } else { "false" }} onclick={toggle_drawer}>{"☰"}</button>
-                        <a class="home" href="https://tools.tmuhpeds.info/" title="回北醫兒科工具站">{"←"}<span class="hl2">{"工具站"}</span></a>
                         <h1>{"兒科"}<span>{"常用藥"}</span></h1>
                         <div class="bwbox">
                             <label for="bw">{"體重"}</label>
