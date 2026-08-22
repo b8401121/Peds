@@ -37,6 +37,18 @@ fn app() -> Html {
     let search_query = use_state(|| String::new());
     let selected_category = use_state(|| -1_i32);
     let drawer_open = use_state(|| false);
+    let theme_idx = use_state(|| 0_usize); // 0: 柔和灰 (Soft), 1: 暖米紙 (Warm), 2: 夜間深色 (Dark)
+
+    let themes = ["theme-soft", "theme-warm", "theme-dark"];
+    let theme_labels = ["🌿 柔和護眼", "📖 暖米色調", "🌙 深色夜間"];
+
+    let toggle_theme = {
+        let theme_idx = theme_idx.clone();
+        Callback::from(move |_| {
+            let next = (*theme_idx + 1) % 3;
+            theme_idx.set(next);
+        })
+    };
 
     let on_weight_input = {
         let weight = weight.clone();
@@ -120,7 +132,7 @@ fn app() -> Html {
     let mut any_shown = false;
     
     html! {
-        <>
+        <div class={classes!("app-root", themes[*theme_idx])}>
             <header>
                 <div class="hwrap">
                     <div class="row1">
@@ -150,6 +162,9 @@ fn app() -> Html {
                                 <span class="search-icon">{"🔍"}</span>
                                 <input id="q" type="search" placeholder="搜尋藥名、學名、適應症、症狀..." oninput={on_search_input} value={(*search_query).clone()} />
                             </div>
+                            <button type="button" class="theme-toggle-btn" title="切換配色模式 (柔和護眼 / 暖米色調 / 深色夜間)" onclick={toggle_theme}>
+                                {theme_labels[*theme_idx]}
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -422,7 +437,7 @@ fn app() -> Html {
             if *drawer_open {
                 <div id="backdrop" class="on" onclick={close_drawer}></div>
             }
-        </>
+        </div>
     }
 }
 

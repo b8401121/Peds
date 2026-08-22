@@ -1,17 +1,21 @@
-:root {
-  /* Colors - Light Theme (Clean Slate & Medical Blue) */
-  --bg: #f8fafc;
+/* ==========================================================================
+   Eye-Care Color Palettes & Themes (柔和護眼 / 暖米紙感 / 深色夜間)
+   ========================================================================== */
+
+/* 預設：柔和護眼灰 (Soft Eye-Care Slate) - 降低亮度，徹底消除螢幕刺眼白光 */
+:root, .theme-soft {
+  --bg: #e2e8f0;
   --card: #ffffff;
   --card-hover: #ffffff;
-  --ink: #0f172a;
+  --ink: #1e293b;
   --ink-secondary: #475569;
   --ink-muted: #64748b;
-  --line: #e2e8f0;
+  --line: #cbd5e1;
   --line-subtle: #f1f5f9;
   
   --primary: #0284c7;
   --primary-hover: #0369a1;
-  --primary-soft: #f0f9ff;
+  --primary-soft: #e0f2fe;
   --primary-border: #bae6fd;
 
   --warn: #b45309;
@@ -34,47 +38,81 @@
   --radius-lg: 16px;
   --radius-pill: 9999px;
 
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.05);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.04);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.08);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.08);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.12), 0 4px 6px -4px rgb(0 0 0 / 0.08);
 
   --hh: 76px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0b1120;
-    --card: #1e293b;
-    --card-hover: #243247;
-    --ink: #f8fafc;
-    --ink-secondary: #cbd5e1;
-    --ink-muted: #94a3b8;
-    --line: #334155;
-    --line-subtle: #1e293b;
+/* 暖紙米色 (Warm Kindle / Paper Eye-Care) - 模擬護眼紙張與溫和米黃色調 */
+.theme-warm {
+  --bg: #ede6da;
+  --card: #faf6f0;
+  --card-hover: #ffffff;
+  --ink: #292524;
+  --ink-secondary: #57534e;
+  --ink-muted: #78716c;
+  --line: #d8d0c4;
+  --line-subtle: #eee7dc;
 
-    --primary: #38bdf8;
-    --primary-hover: #7dd3fc;
-    --primary-soft: #0c2d48;
-    --primary-border: #0369a1;
+  --primary: #b45309;
+  --primary-hover: #92400e;
+  --primary-soft: #fef3c7;
+  --primary-border: #fde68a;
 
-    --warn: #fbbf24;
-    --warn-bg: #2d2008;
-    --warn-border: #78350f;
+  --warn: #c2410c;
+  --warn-bg: #fff7ed;
+  --warn-border: #ffedd5;
 
-    --danger: #f43f5e;
-    --danger-bg: #31131a;
-    --danger-border: #881337;
+  --danger: #b91c1c;
+  --danger-bg: #fef2f2;
+  --danger-border: #fee2e2;
 
-    --inj: #a5b4fc;
-    --inj-soft: #1e1b4b;
-    --inj-border: #4338ca;
+  --inj: #7c3aed;
+  --inj-soft: #f5f3ff;
+  --inj-border: #ddd6fe;
 
-    --route-std: #334155;
-    --route-std-text: #e2e8f0;
+  --route-std: #e7dfd3;
+  --route-std-text: #57534e;
 
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4);
-  }
+  --shadow-sm: 0 1px 3px 0 rgb(60 50 40 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(60 50 40 / 0.12);
+}
+
+/* 深色夜間 (Dark Night Mode) - 適合昏暗環境、夜班值班，完全不刺眼 */
+.theme-dark {
+  --bg: #0f172a;
+  --card: #1e293b;
+  --card-hover: #273549;
+  --ink: #f8fafc;
+  --ink-secondary: #cbd5e1;
+  --ink-muted: #94a3b8;
+  --line: #334155;
+  --line-subtle: #1e293b;
+
+  --primary: #38bdf8;
+  --primary-hover: #7dd3fc;
+  --primary-soft: #082f49;
+  --primary-border: #0369a1;
+
+  --warn: #fbbf24;
+  --warn-bg: #2d2008;
+  --warn-border: #78350f;
+
+  --danger: #f43f5e;
+  --danger-bg: #31131a;
+  --danger-border: #881337;
+
+  --inj: #a5b4fc;
+  --inj-soft: #1e1b4b;
+  --inj-border: #4338ca;
+
+  --route-std: #334155;
+  --route-std-text: #e2e8f0;
+
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.4);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5);
 }
 
 * {
@@ -92,6 +130,13 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 
+.app-root {
+  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--ink);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
 /* ==========================================================================
    Header & Navigation Controls
    ========================================================================== */
@@ -104,6 +149,7 @@ header {
   box-shadow: var(--shadow-sm);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 
 .hwrap {
@@ -285,6 +331,34 @@ h1 span {
   color: var(--ink-muted);
 }
 
+/* Theme Toggle Button */
+.theme-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1.5px solid var(--line);
+  background: var(--card);
+  color: var(--ink);
+  border-radius: var(--radius-md);
+  padding: 7px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.theme-toggle-btn:hover {
+  background: var(--primary-soft);
+  color: var(--primary);
+  border-color: var(--primary-border);
+}
+
+.theme-toggle-btn:active {
+  transform: scale(0.95);
+}
+
 /* Mobile Menu Button */
 .menu {
   display: none;
@@ -320,7 +394,7 @@ h1 span {
 /* Sidebar TOC */
 aside#toc {
   flex: none;
-  width: 220px;
+  width: 230px;
   position: sticky;
   top: calc(var(--hh) + 16px);
   max-height: calc(100vh - var(--hh) - 32px);
@@ -330,6 +404,7 @@ aside#toc {
   border-radius: var(--radius-lg);
   padding: 14px 10px;
   box-shadow: var(--shadow-sm);
+  transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 
 /* Custom Scrollbar for TOC */
@@ -369,7 +444,7 @@ aside#toc::-webkit-scrollbar-thumb {
 #tocnav {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 4px;
 }
 
 .tocitem {
@@ -378,7 +453,7 @@ aside#toc::-webkit-scrollbar-thumb {
   justify-content: space-between;
   gap: 8px;
   width: 100%;
-  padding: 7px 10px;
+  padding: 8px 10px;
   border-radius: var(--radius-sm);
   cursor: pointer;
   border: 0;
