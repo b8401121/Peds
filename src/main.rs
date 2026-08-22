@@ -199,15 +199,19 @@ fn app() -> Html {
                                         
                                         if hit { sec_shown += 1; }
 
-                                        let m_arr = Reflect::get(&drug, &JsValue::from_str("m"))
-                                            .ok()
-                                            .map(|v| Array::from(&v))
-                                            .unwrap_or_else(Array::new);
+                                        let m_val = Reflect::get(&drug, &JsValue::from_str("m")).unwrap_or(JsValue::UNDEFINED);
+                                        let m_arr = if m_val.is_undefined() || m_val.is_null() {
+                                            Array::new()
+                                        } else {
+                                            Array::from(&m_val)
+                                        };
                                         
-                                        let r_arr = Reflect::get(&drug, &JsValue::from_str("r"))
-                                            .ok()
-                                            .filter(|v| !v.is_undefined() && !v.is_null())
-                                            .map(|v| Array::from(&v));
+                                        let r_val = Reflect::get(&drug, &JsValue::from_str("r")).unwrap_or(JsValue::UNDEFINED);
+                                        let r_arr = if r_val.is_undefined() || r_val.is_null() {
+                                            None
+                                        } else {
+                                            Some(Array::from(&r_val))
+                                        };
 
                                         let mut calc_html = html! { <p class="nobw">{"↑ 輸入體重後自動計算"}</p> };
                                         let calc_val = Reflect::get(&drug, &JsValue::from_str("calc")).unwrap_or(JsValue::NULL);
@@ -231,11 +235,11 @@ fn app() -> Html {
                                                         calc_html = html! {
                                                             for (0..rows.length()).map(|idx| {
                                                                 let row = rows.get(idx);
-                                                                let lbl = Reflect::get(&row, &JsValue::from_str("lbl")).unwrap().as_string().unwrap_or_default();
-                                                                let big = Reflect::get(&row, &JsValue::from_str("big")).unwrap().as_string().unwrap_or_default();
-                                                                let freq = Reflect::get(&row, &JsValue::from_str("freq")).ok().and_then(|v| v.as_string()).unwrap_or_default();
-                                                                let flag = Reflect::get(&row, &JsValue::from_str("flag")).ok().and_then(|v| v.as_string()).filter(|s| !s.is_empty());
-                                                                let sub = Reflect::get(&row, &JsValue::from_str("sub")).ok().and_then(|v| v.as_bool()).unwrap_or(false);
+                                                                let lbl = Reflect::get(&row, &JsValue::from_str("lbl")).unwrap_or(JsValue::UNDEFINED).as_string().unwrap_or_default();
+                                                                let big = Reflect::get(&row, &JsValue::from_str("big")).unwrap_or(JsValue::UNDEFINED).as_string().unwrap_or_default();
+                                                                let freq = Reflect::get(&row, &JsValue::from_str("freq")).unwrap_or(JsValue::UNDEFINED).as_string().unwrap_or_default();
+                                                                let flag = Reflect::get(&row, &JsValue::from_str("flag")).unwrap_or(JsValue::UNDEFINED).as_string().filter(|s| !s.is_empty());
+                                                                let sub = Reflect::get(&row, &JsValue::from_str("sub")).unwrap_or(JsValue::UNDEFINED).as_bool().unwrap_or(false);
                                                                 
                                                                 if sub {
                                                                     html! {
