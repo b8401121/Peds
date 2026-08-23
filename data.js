@@ -480,13 +480,14 @@ const DATA=[
   {n:'Doxymycin (doxycycline) 100 mg 腸溶膠囊',rt:'口服',
    s:'doxycycline hyclate 100 mg/cap｜院內碼 ME01M1・健保 AC35692100｜藍/黃雙色(DEC)｜永信',
    f:'<45 kg: 2.2~4.4 mg/kg/day 分 BID ｜ ≥45 kg: 100 mg BID',
-   wm:'<b>💊 院內規格與外觀：</b>Doxymycin Cap 100mg（多喜黴素腸溶膠囊，永信），外觀為<b>藍／黃雙色膠囊，標記 DEC</b>（院內碼：<code>ME01M1</code>、健保碼：<code>AC35692100</code>）。<br><b>⚠️ 重要劑型注意事項：</b>本品為<b>腸溶膠囊，請整顆吞服，不可咬碎或磨粉！</b>需配<b>充足水分（一杯水）並維持坐姿／立姿</b>吞服，服藥後 30 分鐘內勿立即平躺以防食道炎／潰瘍。<br><b>⚠️ 交互作用與防護：</b>請與<b>牛奶、乳製品、制酸劑、鐵劑、鈣片間隔 2 小時以上</b>服用；服藥期間注意防曬遮蔽（光敏感性）。懷孕分級 <b>D</b>，孕婦及授乳婦避免使用。<br><b>💡 破除兒童牙齒染色迷思（美國 CDC & AAP 實證）：</b>早期四環黴素因與鈣螯合導致牙齒變色，但 <b>doxycycline 與鈣結合力極低</b>。美國 CDC 及 AAP 指引證實：<b>8 歲以下兒童短療程（≤21 天）使用，並不會造成牙齒永久染色或琺瑯質發育不全！</b><br><b>⚠️ 恙蟲病與立克次體重症一線救命用藥：</b>對恙蟲病（Scrub typhus）、洛磯山斑點熱（RMSF）等立克次體重症感染，<b>不限年齡皆為首選第一線救命抗生素</b>（切勿因恐懼牙齒染色而延誤治療造成生命危險）。',
+   wm:'<b>💊 院內規格與外觀：</b>Doxymycin Cap 100mg（多喜黴素腸溶膠囊，永信），外觀為<b>藍／黃雙色膠囊，標記 DEC</b>（院內碼：<code>ME01M1</code>、健保碼：<code>AC35692100</code>）。<br><b>⚠️ 重要劑型注意事項：</b>本品為<b>腸溶膠囊，請整顆吞服，不可咬碎或磨粉！</b>需配<b>充足水分（一大杯水）並維持坐姿／立姿</b>吞服，服藥後 30–60 分鐘內勿立即平躺以防食道炎／潰瘍。<br><b>⚠️ 交互作用與防護：</b>請與<b>牛奶、乳製品、制酸劑（含鋁/鎂）、鐵劑、鈣片、鋅劑間隔 2 小時以上</b>服用；服藥期間注意防曬遮蔽（光敏感性）；CYP 誘導劑（rifampicin, phenytoin, carbamazepine, phenobarbital）會降低藥效。懷孕分級 <b>D</b>，孕婦及授乳婦避免使用。<br><b>💡 破除兒童牙齒染色迷思（MSF / 美國 CDC & AAP 實證）：</b>早期四環黴素因與鈣螯合導致牙齒變色，但 <b>doxycycline 與鈣結合力極低</b>。MSF（無國界醫生）、美國 CDC 及 AAP 指引一致證實：<b>8 歲以下兒童短療程（≤21 天）使用，並不會造成牙齒永久染色或琺瑯質發育不全！</b><br><b>⚠️ 恙蟲病與立克次體重症一線救命用藥：</b>對恙蟲病（Scrub typhus）、洛磯山斑點熱（RMSF）等立克次體重症感染，<b>不限年齡皆為首選第一線救命抗生素</b>（切勿因恐懼牙齒染色而延誤治療造成生命危險）。',
    m:['<b>&lt;45 kg</b>：2.2–4.4 mg/kg/day，分 Q12H（BID）',
       '<b>≥45 kg 或成人</b>：100–200 mg/day，常規 100 mg Q12H（BID，每次 1 顆）',
-      '恙蟲病/立克次體重症：4.4 mg/kg/day 分 BID',
+      '<b>MSF 建議療程</b>：恙蟲病/立克次體 5–7 天（或退燒後續用 3 天）；非典型肺炎(黴漿菌) 10–14 天；披衣菌/鉤端螺旋體 7 天',
+      '重症/立克次體負荷量：D1 給 4.4 mg/kg（Max 200 mg），之後 2.2 mg/kg BID',
       '單次 <b>Max</b> 100 mg；每日 Max 200 mg',
       '腸溶膠囊：整顆吞服，不可磨粉咀嚼'],
-   r:[['Doxymycin 100mg 仿單 PDF','https://www.cth.org.tw/public/medi_news/ed8f712a81fc5dc7837ed14e3eed975f.pdf'],['NEJS: 兒童可以使用四環黴素治療感染嗎','https://www.nejs.app/2019/10/blog-post.html'],['CDC: Doxycycline and Tooth Staining','https://www.cdc.gov/rmsf/healthcare-providers/treatment.html'],['AAP Pediatrics: No Tooth Staining with Doxycycline','https://publications.aap.org/pediatrics/article/135/5/e1124/33946/No-Tooth-Staining-for-Children-Treated-with']],
+   r:[['MSF: Doxycycline oral guideline','https://medicalguidelines.msf.org/en/viewport/EssDr/english/doxycycline-oral-16683506.html'],['Doxymycin 100mg 仿單 PDF','https://www.cth.org.tw/public/medi_news/ed8f712a81fc5dc7837ed14e3eed975f.pdf'],['NEJS: 兒童可以使用四環黴素治療感染嗎','https://www.nejs.app/2019/10/blog-post.html'],['CDC: Doxycycline and Tooth Staining','https://www.cdc.gov/rmsf/healthcare-providers/treatment.html'],['AAP Pediatrics: No Tooth Staining with Doxycycline','https://publications.aap.org/pediatrics/article/135/5/e1124/33946/No-Tooth-Staining-for-Children-Treated-with']],
    calc:bw=>{
      if(bw>=45){
        return[
