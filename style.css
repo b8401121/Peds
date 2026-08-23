@@ -1,7 +1,25 @@
 /* ==========================================================================
-   DSEG7 Digital Clock 7-Segment Web Font & Stylesheet
+   DSEG7 Digital Clock 7-Segment Web Font with Unicode Range for Digits
    ========================================================================== */
-@import url('https://cdn.jsdelivr.net/npm/dseg@0.46.0/css/dseg.min.css');
+@font-face {
+  font-family: 'LCD-Digits';
+  src: url('https://cdn.jsdelivr.net/npm/dseg@0.46.0/fonts/DSEG7-Classic/DSEG7Classic-Bold.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/npm/dseg@0.46.0/fonts/DSEG7-Classic/DSEG7Classic-Bold.woff') format('woff'),
+       url('https://cdn.jsdelivr.net/npm/dseg@0.46.0/fonts/DSEG7-Classic/DSEG7Classic-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  unicode-range: U+0030-0039, U+002E, U+002D, U+007E, U+002B, U+002F, U+003A;
+}
+
+@font-face {
+  font-family: 'LCD-Digits';
+  src: url('https://cdn.jsdelivr.net/npm/dseg@0.46.0/fonts/DSEG7-Classic/DSEG7Classic-Regular.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/npm/dseg@0.46.0/fonts/DSEG7-Classic/DSEG7Classic-Regular.woff') format('woff'),
+       url('https://cdn.jsdelivr.net/npm/dseg@0.46.0/fonts/DSEG7-Classic/DSEG7Classic-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  unicode-range: U+0030-0039, U+002E, U+002D, U+007E, U+002B, U+002F, U+003A;
+}
 
 
 /* 預設：柔和護眼灰 (Soft Eye-Care Slate) - 降低亮度，徹底消除螢幕刺眼白光 */
@@ -377,10 +395,10 @@ h1 span {
 .bwbox .unit {
   position: relative;
   z-index: 2;
-  font-family: 'DSEG7-Classic', 'DSEG7-Modern', -apple-system, monospace;
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: 1px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
   color: #2b362b;
   text-transform: uppercase;
   user-select: none;
@@ -1127,7 +1145,7 @@ main {
   border-radius: 6px;
   padding: 3px 10px;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.16), 0 1px 0 rgba(255, 255, 255, 0.7);
-  font-family: 'DSEG7-Classic', 'DSEG7-Modern', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: 'LCD-Digits', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
   font-size: 22px;
   font-weight: 700;
   letter-spacing: 1.5px;
@@ -1183,7 +1201,7 @@ main {
   border-radius: 4px;
   padding: 1px 6px;
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12);
-  font-family: 'DSEG7-Classic', 'DSEG7-Modern', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: 'LCD-Digits', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
   font-size: 13.5px;
   font-weight: 700;
   letter-spacing: 1px;
