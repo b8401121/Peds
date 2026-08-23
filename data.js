@@ -436,7 +436,32 @@ const DATA=[
        S('　膜衣錠 Clavulanate 每日總量', MG(solidClav), '（' + num(r2(solidClav/bw)) + ' mg/kg/day，<10 安全範圍 ✅）', null)
      ];
    }},
- {n:'Amolin',rt:'口服',s:'amoxicillin 25 mg/mL',f:'(0.6×BW) mL',
+   {n:'Curam IV',rt:'針劑',
+   s:'amoxicillin 1000 mg ＋ clavulanate 200 mg（5:1）＝ 1.2 g/vial｜以 amoxicillin 計',
+   f:'常規 25 mg/kg/dose Q8H ｜ 重症 25 mg/kg/dose Q6H（以 amox 計）',
+   wm:'<b>💉 規格與劑量基準（以 Amoxicillin 計）：</b>本品每瓶含 <b>Amoxicillin 1 g ＋ Clavulanic Acid 0.2 g（總重 1.2 g，5:1 配方）</b>。仿單明確規範：<b>劑量以 amoxicillin 含量計算</b>。<br><b>⚠️ 給藥方式與禁忌：</b><br>• 可經靜脈注射（IV injection 3–4 分鐘）或靜脈間歇輸注（IV infusion 30–40 分鐘）。<br>• <b>⚠️ 不適用於肌肉注射（Not suitable for IM administration）</b>。<br>• 療程一般不超過 14 天。<br><b>⚠️ 單次與每日上限：</b><br>• 兒童單次以 <b>Amox 1000 mg（＝ 1 瓶 1.2 g 總重）</b> 為上限（約 40 kg 達上限，請勿超過 1 瓶）。<br>• 成人/&gt;12 歲常規為 1 g Q8H（每日 3 瓶 ＝ 3.6 g 總重）、重症 1 g Q6H（每日 4 瓶 ＝ 4.8 g 總重）。',
+   m:['3 個月–12 歲常規：25 mg/kg/dose Q8H（Amox 75 mg/kg/day）',
+      '3 個月–12 歲重症：25 mg/kg/dose Q6H（Amox 100 mg/kg/day）',
+      '0–3 個月周產期：25 mg/kg/dose Q12H → 視情況增至 Q8H',
+      '&gt;12 歲及成人：常規 1 g Q8H（每次 1 瓶）｜重症 1 g Q6H',
+      '手術預防：麻醉誘導時 1–2 g IV（24h 內不超過 3 g）',
+      '<b>僅限靜脈給藥（IV），禁止肌肉注射（IM）</b>'],
+   calc:bw=>{
+     const amoxPerDose = Math.min(25 * bw, 1000);
+     const totalPerDose = amoxPerDose * 1.2;
+     const vialFraction = amoxPerDose / 1000;
+     const capped = (25 * bw >= 1000);
+     return [
+       L('常規每次（Q8H，以 Amox 計）', MG(amoxPerDose), 'Q8H（Amox 75 mg/kg/day）', capped ? '已達單次上限 1 g Amox（1 瓶）' : null),
+       L('重症每次（Q6H，以 Amox 計）', MG(amoxPerDose), 'Q6H（Amox 100 mg/kg/day）', capped ? '已達單次上限 1 g Amox（1 瓶）' : null),
+       S('　開立總重（Amox＋Clav）', MG(totalPerDose) + ' / 次', '（' + num(r2(vialFraction)) + ' 瓶/次，1.2 g/瓶）'),
+       S('　其中 Clavulanate 含量', MG(amoxPerDose * 0.2) + ' / 次', '（每次 ' + num(r1(amoxPerDose * 0.2 / bw)) + ' mg/kg）'),
+       L('0–3 個月新生兒（周產期）', MG(amoxPerDose), 'Q12H（Amox 50 mg/kg/day）', null),
+       L('Q8H 常規每日總重', MG(totalPerDose * 3), '每日 3 次（Amox ' + MG(amoxPerDose * 3) + '/day）', null),
+       L('Q6H 重症每日總重', MG(totalPerDose * 4), '每日 4 次（Amox ' + MG(amoxPerDose * 4) + '/day）', null)
+     ];
+   }},
+{n:'Amolin',rt:'口服',s:'amoxicillin 25 mg/mL',f:'(0.6×BW) mL',
   wm:'45 mg/kg/day 適用於 GAS 咽炎與低風險鼻竇炎。<b>AOM 需 80–90 mg/kg/day</b>，請用下方 ★ 併用方案。',
   m:['= 45 mg/kg/day','AOM 高劑量請見下方併用方案',
      '<b>沒有水劑時：amoxicillin 250 mg 膠囊泡水至 10 mL ＝ 25 mg/mL，與水劑同濃度，故 (0.6×BW) 的公式不變</b>，只多一個「先泡」的步驟（膠囊交家長回家泡，藥局不做分包）。詳見 <a href="/prototype-amox-cap.html" style="color:var(--accent);font-weight:700">錠劑／替代劑型換算 →</a>（<b>試驗品，未經藥師核對</b>）'],
