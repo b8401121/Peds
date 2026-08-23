@@ -147,8 +147,9 @@ fn app() -> Html {
                                     <span class="zenitsu-bolt">{"⚡"}</span>
                                 </div>
                                 <div class="brand-title-wrap">
-                                    <div class="akubyou-plaque" title="惡病滅殺 (日輪刀銘文)">
+                                    <div class="akubyou-plaque" title="惡病滅殺！(禁止無慘 / 驅逐病魔)">
                                         <img src="akubyou.png" alt="惡病滅殺" class="akubyou-img" height="26" />
+                                        <img src="muzan_banned.png" alt="禁止無慘" class="muzan-banned-img" width="28" height="28" />
                                     </div>
                                     <h1>{"兒科常用藥"}<span>{"劑量查詢"}</span></h1>
                                 </div>
