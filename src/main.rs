@@ -143,40 +143,7 @@ fn app() -> Html {
                             </button>
                             <div class="brand">
                                 <div class="zenitsu-logo" title="我妻善逸 (雷之呼吸 兒科常用藥)">
-                                    <svg viewBox="0 0 100 100" class="zenitsu-svg" width="36" height="36" aria-label="我妻善逸 Logo">
-                                        <path d="M 20,80 L 80,80 L 85,100 L 15,100 Z" fill="#f59e0b"/>
-                                        <polygon points="30,96 38,96 34,89" fill="#ffffff"/>
-                                        <polygon points="50,96 58,96 54,89" fill="#ffffff"/>
-                                        <polygon points="70,96 78,96 74,89" fill="#ffffff"/>
-                                        <polygon points="40,80 60,80 50,92" fill="#1e293b"/>
-                                        <polygon points="46,80 54,80 50,86" fill="#ffffff"/>
-                                        <circle cx="50" cy="52" r="28" fill="#fef08a"/>
-                                        <ellipse cx="32" cy="60" rx="5" ry="3" fill="#f87171" opacity="0.6"/>
-                                        <ellipse cx="68" cy="60" rx="5" ry="3" fill="#f87171" opacity="0.6"/>
-                                        <ellipse cx="36" cy="52" rx="5.5" ry="6.5" fill="#78350f"/>
-                                        <ellipse cx="36" cy="54" rx="4" ry="4.5" fill="#d97706"/>
-                                        <circle cx="34" cy="50" r="2" fill="#ffffff"/>
-                                        <circle cx="38" cy="55" r="1" fill="#ffffff"/>
-                                        <ellipse cx="64" cy="52" rx="5.5" ry="6.5" fill="#78350f"/>
-                                        <ellipse cx="64" cy="54" rx="4" ry="4.5" fill="#d97706"/>
-                                        <circle cx="62" cy="50" r="2" fill="#ffffff"/>
-                                        <circle cx="66" cy="55" r="1" fill="#ffffff"/>
-                                        <path d="M 29,43 Q 36,41 42,45" fill="none" stroke="#92400e" stroke-width="2" stroke-linecap="round"/>
-                                        <path d="M 71,43 Q 64,41 58,45" fill="none" stroke="#92400e" stroke-width="2" stroke-linecap="round"/>
-                                        <path d="M 47,65 Q 50,68 53,65" fill="none" stroke="#78350f" stroke-width="1.5" stroke-linecap="round"/>
-                                        <path d="M 18,50 C 16,30 28,12 50,12 C 72,12 84,30 82,50 C 85,58 83,68 76,70 C 74,58 75,44 75,44 C 75,44 65,30 50,30 C 35,30 25,44 25,44 C 25,44 26,58 24,70 C 17,68 15,58 18,50 Z" fill="#fde047"/>
-                                        <polygon points="44,22 56,22 54,42 46,42" fill="#fde047"/>
-                                        <polygon points="46,36 54,36 53,42 47,42" fill="#ea580c"/>
-                                        <polygon points="32,26 44,24 40,44 33,42" fill="#fde047"/>
-                                        <polygon points="34,38 41,38 40,44 33,42" fill="#ea580c"/>
-                                        <polygon points="56,24 68,26 67,42 60,44" fill="#fde047"/>
-                                        <polygon points="59,38 66,38 67,42 60,44" fill="#ea580c"/>
-                                        <polygon points="18,52 24,52 22,66 17,62" fill="#ea580c"/>
-                                        <polygon points="76,52 82,52 83,62 78,66" fill="#ea580c"/>
-                                        <polygon points="45,14 50,6 55,14" fill="#fde047"/>
-                                        <polygon points="33,18 36,9 43,16" fill="#fde047"/>
-                                        <polygon points="57,16 64,9 67,18" fill="#fde047"/>
-                                    </svg>
+                                    <img src="zenitsu.png" alt="我妻善逸" class="zenitsu-img" width="38" height="38" />
                                     <span class="zenitsu-bolt">{"⚡"}</span>
                                 </div>
                                 <h1>{"兒科常用藥"}<span>{"劑量查詢"}</span></h1>
