@@ -391,28 +391,51 @@ const DATA=[
 ]},
 
 {c:'抗生素 Antibiotics',k:'抗生素 antibiotic',d:[
- {n:'Curam 水劑',rt:'口服',s:'amoxicillin/clavulanate 50/12.5 mg/mL（<b>4:1</b>）懸液｜劑量以 amoxicillin 計｜北醫另有針劑（5:1、以總重計），見下一張',f:'(0.3×BW) mL',
-  w:'<b>此 45 mg/kg/day 不適用於 AOM。</b>AOM 需 amoxicillin <b>80–90 mg/kg/day 分 BID</b>（台灣 PNSP 盛行率高）—— 請用下方 ★ 併用方案。45 mg/kg/day 只適用於<b>無風險因子的低抗藥區鼻竇炎、GAS 咽炎、皮膚軟組織感染</b>。另注意 Curam 4:1 在 45 mg/kg/day 時 clavulanate 已達 11.25 mg/kg/day，高於 Stanford 建議的 &lt;10。<br><b>約 33 kg 起，依體重換算的 clavulanate 會超過成人每日量（約 375 mg）</b> —— 水劑本來就是給小小孩的，大孩子請直接用 <b>Curam 錠 875/125 BID</b>，不要再依體重放大。這也是為什麼高劑量 AOM 要用下方的 ★ 併用方案：把 clavulanate 鎖在 45 mg/kg/day 的水位，缺的 amoxicillin 由 Amolin 補。',
-  m:['= 45 mg/kg/day','High dose amoxicillin = 80–90 mg/kg/day','若院內有 7:1 (400/57) 或 14:1 ES-600 應優先使用',
-     '院內另有 <b>Curam F.C. 1 g 膜衣錠</b>（諾快寧，衛署藥輸字第024808號；amoxicillin 875 ／ clavulanic acid 125 ＝ <b>7:1</b>）—— 大孩子水劑體積過大時改用錠劑，且 7:1 的 clavulanate 負擔低於水劑的 4:1。錠劑只能整錠／剖半，<b>體重太小給不了</b>，換算見 <a href="/prototype-amox-cap.html" style="color:var(--accent);font-weight:700">錠劑／替代劑型換算 →</a>（<b>試驗品，未經藥師核對</b>）'],
-  r:[['AAP 2013 AOM 指引','https://publications.aap.org/pediatrics/article/131/3/e964/30912/The-Diagnosis-and-Management-of-Acute-Otitis-Media'],['Stanford Augmentin Guide','https://www.stanfordchildrens.org/content-public/pdf/antimicrobial-stewardship-program/augmentin-dosing-guide.pdf']],
-  calc:bw=>[L('每次劑量',mL(0.3*bw),'TID',null),L('每日總量',MG(45*bw)+' amox','45 mg/kg/day',null),
-   S('Clavulanate 日量',MG(11.25*bw),'（11.25 mg/kg/day）',
-     11.25*bw>375
-       ?'已超過成人每日 clavulanate 量（約 375 mg）—— 約 33 kg 起即發生。請改用 Curam 錠 875/125 BID，勿再依體重放大水劑'
-       :'高於 Stanford 建議上限 10 mg/kg/day（4:1 配方固有限制）')]},
- {n:'Curam IV',rt:'針劑',s:'amoxicillin/clavulanate 500/100 與 1000/200 mg/vial（<b>5:1</b>）｜開立單位為 mg <b>總重</b>',f:'36 mg/kg/dose（總重，非 amoxicillin）',
-  w:'<b>開立的 mg 數是「總重」＝ amoxicillin ＋ clavulanate，不是 amoxicillin。</b>北醫習慣以總重開立（一支 1200 mg ＝ amox 1000 ＋ clav 200）。下方「每次劑量」即為開立用的數字。<br><b>與 Curam 水劑同名，劑型務必確認。</b>水劑為 (0.3×BW) mL TID ＝ 45 mg/kg/day 且比例為 <b>4:1</b>；針劑為 36 mg/kg/dose 且比例為 <b>5:1</b> —— 換算基準與配方比例都不同，混用會嚴重偏離。<br>中度 Q8H、重度 Q6H。<br><b>單次 Max 1200 mg 就是成人單次劑量</b>，<b>約 33 kg（1200÷36）即達到</b>。超過此體重維持 1200 mg 不再往上加 —— 這是正確收斂到成人劑量，不是給不足，<b>不要為了湊 mg/kg 而開超過一支</b>。Q8H×1200 ＝ 3.6 g/day、Q6H×1200 ＝ 4.8 g/day，分別對應成人常規與重症上限。',
-  m:['中度：36 mg/kg/dose Q8H｜重度 Q6H','單次 <b>Max</b> 1200 mg（＝成人量，約 33 kg 達到）','每日 Max 3.6 g（Q8H）／4.8 g（Q6H）','5:1 配方：總重 ÷ 6 × 5 = amoxicillin'],
-  calc:bw=>{const d=Math.min(36*bw,1200),amox=d*5/6,clav=d/6;
-   return[L('每次劑量（總重．開立用）',MG(d),'Q8H（中度）／Q6H（重度）',36*bw>1200?'已達成人單次量 1200 mg（依體重算出 '+MG(36*bw)+'）—— 維持 1200，勿再往上':null),
-    S('其中 amoxicillin',MG(amox),'（'+num(r1(amox/bw))+' mg/kg/dose）'),
-    S('其中 clavulanate',MG(clav),'（'+num(r1(clav/bw))+' mg/kg/dose）'),
-    S('換算 vial',num(r2(d/1200))+' 支','（1000/200 規格，1200 mg/支）'),
-    L('Q8H 每日總重',MG(d*3),'中度',null),
-    S('　　clavulanate 累積',MG(clav*3),'/day'),
-    L('Q6H 每日總重',MG(d*4),'重度',null),
-    S('　　clavulanate 累積',MG(clav*4),'/day')]}},
+ {n:'Curam 水劑',rt:'口服',s:'amoxicillin/clavulanate 50/12.5 mg/mL（<b>4:1</b>）懸液 ｜ 無水劑：Curam 1g 膜衣錠 (875/125)',f:'(0.3×BW) mL TID (45 mg/kg/day) ｜ 錠劑：0.5~1 錠 BID',
+   wm:'<b>此 45 mg/kg/day 不適用於 AOM。</b>AOM 需 amoxicillin <b>80–90 mg/kg/day 分 BID</b>（台灣 PNSP 盛行率高）—— 請用下方 ★ 併用方案。45 mg/kg/day 只適用於<b>無風險因子的低抗藥區鼻竇炎、GAS 咽炎、皮膚軟組織感染</b>。<br><b>💊 水劑特性（4:1）：</b>在 45 mg/kg/day 時 clavulanate 累積達 11.25 mg/kg/day，略高於 Stanford 建議的 &lt;10。約 33 kg 起依體重換算的 clavulanate 會超過成人每日量（約 375 mg）—— <b>大孩子請直接改用 Curam 1g 錠（875/125，7:1），勿再依體重放大水劑</b>。<br><b>💊 無水劑／錠劑方案（Curam F.C. 1 g 膜衣錠，875/125，7:1 配方）：</b><br>• &lt;18 kg：1g 膜衣錠體積大且分割誤差大，建議優先用水劑。<br>• 18–25 kg：每次 <b>0.5 錠 BID（Q12H）</b> ＝ 每日 Amox 875 mg（約 35~48 mg/kg/day）＋ Clav 125 mg（&lt;10 安全範圍 ✅）。<br>• 25–35 kg：每次 <b>0.5 錠 TID（一日 3 次）</b> ＝ 每日 Amox 1312.5 mg（約 38~52 mg/kg/day）＋ Clav 187.5 mg。<br>• ≥35 kg 或成人：每次 <b>1 錠 BID（Q12H）</b> ＝ 每日 Amox 1750 mg ＋ Clav 250 mg（已達常規成人標準量 875/125 BID ✅）。',
+   m:['= 45 mg/kg/day（一般/中度感染）','AOM 高劑量請見下方 ★ 併用方案（90 mg/kg/day）',
+      '無水劑／錠劑方案：Curam 1g 膜衣錠（875/125，7:1 配方），換算見下方精算欄',
+      '大孩子（約 >33 kg）請直接改用 Curam 1g 錠 875/125 BID，避免水劑 4:1 的 clavulanate 超標'],
+   r:[['AAP 2013 AOM 指引','https://publications.aap.org/pediatrics/article/131/3/e964/30912/The-Diagnosis-and-Management-of-Acute-Otitis-Media'],['Stanford Augmentin Guide','https://www.stanfordchildrens.org/content-public/pdf/antimicrobial-stewardship-program/augmentin-dosing-guide.pdf']],
+   calc:bw=>{
+     const cTid_mL = 0.3 * bw;
+     const cBid_mL = 0.45 * bw;
+     const clavDaily = cTid_mL * 3 * 12.5;
+     
+     // Solid dosage calculation for Curam 1g (875/125)
+     let solidDose = '', solidAmox = 0, solidClav = 0, solidNote = null;
+     if (bw < 18) {
+       solidDose = '每次 0.5 錠 BID（一日 2 次）';
+       solidAmox = 875;
+       solidClav = 125;
+       solidNote = '⚠️ <18 kg 1g 膜衣錠體積大且分割誤差大，建議優先用水劑';
+     } else if (bw < 25) {
+       solidDose = '每次 0.5 錠 BID（Q12H）';
+       solidAmox = 875;
+       solidClav = 125;
+       solidNote = '每日 Amox ' + MG(875) + '（' + num(r1(875/bw)) + ' mg/kg/day）＋ Clav 125 mg';
+     } else if (bw < 35) {
+       solidDose = '每次 0.5 錠 TID（一日 3 次）';
+       solidAmox = 1312.5;
+       solidClav = 187.5;
+       solidNote = '每日 Amox ' + MG(1312.5) + '（' + num(r1(1312.5/bw)) + ' mg/kg/day）＋ Clav 187.5 mg';
+     } else {
+       solidDose = '每次 1 錠 BID（Q12H）';
+       solidAmox = 1750;
+       solidClav = 250;
+       solidNote = '已達常規成人標準劑量 875/125 BID（Amox ' + MG(1750) + '/day）';
+     }
+     
+     return [
+       L('【水劑】TID 用法（45 mg/kg/day）', mL(cTid_mL), 'TID（一日 3 次）', null),
+       L('【水劑】BID 用法（45 mg/kg/day）', mL(cBid_mL), 'BID（一日 2 次，Q12H）', null),
+       S('　水劑 Clavulanate 每日總量', MG(clavDaily), '（' + num(r2(clavDaily/bw)) + ' mg/kg/day）',
+         clavDaily > 375 ? '已超過成人每日 clavulanate 量（約 375 mg）—— 約 33 kg 起即發生。請改用 Curam 錠 875/125 BID，勿再依體重放大水劑' : (clavDaily/bw > 10 ? '高於 Stanford 建議上限 10 mg/kg/day（4:1 配方固有限制）' : null)),
+       L('【無水劑】Curam 1g 膜衣錠 (875/125)', solidDose, solidNote, null),
+       S('　膜衣錠 Amoxicillin 每日總量', MG(solidAmox), '（' + num(r1(solidAmox/bw)) + ' mg/kg/day）', solidAmox >= 1750 ? '已達常規成人劑量' : null),
+       S('　膜衣錠 Clavulanate 每日總量', MG(solidClav), '（' + num(r2(solidClav/bw)) + ' mg/kg/day，<10 安全範圍 ✅）', null)
+     ];
+   }},
  {n:'Amolin',rt:'口服',s:'amoxicillin 25 mg/mL',f:'(0.6×BW) mL',
   wm:'45 mg/kg/day 適用於 GAS 咽炎與低風險鼻竇炎。<b>AOM 需 80–90 mg/kg/day</b>，請用下方 ★ 併用方案。',
   m:['= 45 mg/kg/day','AOM 高劑量請見下方併用方案',
