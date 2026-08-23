@@ -308,20 +308,30 @@ fn app() -> Html {
                                         let wm = Reflect::get(&drug, &JsValue::from_str("wm")).ok().and_then(|v| v.as_string()).unwrap_or_default();
                                         let f = Reflect::get(&drug, &JsValue::from_str("f")).ok().and_then(|v| v.as_string()).unwrap_or_default();
                                         
-                                        let search_key = format!("{} {} {} {} {} {}", n, s, f, c, k, rt).to_lowercase();
-                                        let search_hit = !searching || search_key.contains(&q);
-                                        
-                                        let cat_hit = searching || cat == -1 || cat == (i as i32);
-                                        let hit = search_hit && cat_hit;
-                                        
-                                        if hit { sec_shown += 1; }
-
                                         let m_val = Reflect::get(&drug, &JsValue::from_str("m")).unwrap_or(JsValue::UNDEFINED);
                                         let m_arr = if m_val.is_undefined() || m_val.is_null() {
                                             Array::new()
                                         } else {
                                             Array::from(&m_val)
                                         };
+                                        let mut m_text = String::new();
+                                        for idx in 0..m_arr.length() {
+                                            if let Some(txt) = m_arr.get(idx).as_string() {
+                                                m_text.push(' ');
+                                                m_text.push_str(&txt);
+                                            }
+                                        }
+
+                                        let drug_key = format!("{} {} {} {} {} {} {}", n, s, f, w, wm, rt, m_text).to_lowercase();
+                                        let drug_hit = drug_key.contains(&q);
+                                        let cat_key = format!("{} {}", c, k).to_lowercase();
+                                        let cat_hit_name = cat_key.contains(&q);
+                                        
+                                        let search_hit = !searching || drug_hit || cat_hit_name;
+                                        let cat_hit = searching || cat == -1 || cat == (i as i32);
+                                        let hit = search_hit && cat_hit;
+                                        
+                                        if hit { sec_shown += 1; }
                                         
                                         let r_val = Reflect::get(&drug, &JsValue::from_str("r")).unwrap_or(JsValue::UNDEFINED);
                                         let r_arr = if r_val.is_undefined() || r_val.is_null() {

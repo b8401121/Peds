@@ -390,7 +390,7 @@ const DATA=[
   m:['低品質研究，療效證據不足（<a href="https://www.uptodate.com/contents/management-of-gastroesophageal-reflux-disease-in-children-and-adolescents" target="_blank">UpToDate</a>）'],calc:null},
 ]},
 
-{c:'抗生素 Antibiotics',k:'抗生素 antibiotic 中耳炎 AOM 鼻竇炎 肺炎 咽炎 UTI 蜂窩性組織炎 doxycycline 多喜黴素 恙蟲病 四環黴素 立克次體 萊姆病',d:[
+{c:'抗生素 Antibiotics',k:'抗生素 antibiotic',d:[
  {n:'Curam 水劑',rt:'口服',s:'amoxicillin/clavulanate 50/12.5 mg/mL（<b>4:1</b>）懸液｜劑量以 amoxicillin 計｜北醫另有針劑（5:1、以總重計），見下一張',f:'(0.3×BW) mL',
   w:'<b>此 45 mg/kg/day 不適用於 AOM。</b>AOM 需 amoxicillin <b>80–90 mg/kg/day 分 BID</b>（台灣 PNSP 盛行率高）—— 請用下方 ★ 併用方案。45 mg/kg/day 只適用於<b>無風險因子的低抗藥區鼻竇炎、GAS 咽炎、皮膚軟組織感染</b>。另注意 Curam 4:1 在 45 mg/kg/day 時 clavulanate 已達 11.25 mg/kg/day，高於 Stanford 建議的 &lt;10。<br><b>約 33 kg 起，依體重換算的 clavulanate 會超過成人每日量（約 375 mg）</b> —— 水劑本來就是給小小孩的，大孩子請直接用 <b>Curam 錠 875/125 BID</b>，不要再依體重放大。這也是為什麼高劑量 AOM 要用下方的 ★ 併用方案：把 clavulanate 鎖在 45 mg/kg/day 的水位，缺的 amoxicillin 由 Amolin 補。',
   m:['= 45 mg/kg/day','High dose amoxicillin = 80–90 mg/kg/day','若院內有 7:1 (400/57) 或 14:1 ES-600 應優先使用',
