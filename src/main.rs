@@ -146,7 +146,12 @@ fn app() -> Html {
                                     <img src="zenitsu.png" alt="我妻善逸" class="zenitsu-img" width="38" height="38" />
                                     <span class="zenitsu-bolt">{"⚡"}</span>
                                 </div>
-                                <h1>{"兒科常用藥"}<span>{"劑量查詢"}</span></h1>
+                                <div class="brand-title-wrap">
+                                    <div class="akubyou-plaque" title="惡病滅殺 (日輪刀銘文)">
+                                        <img src="akubyou.png" alt="惡病滅殺" class="akubyou-img" height="26" />
+                                    </div>
+                                    <h1>{"兒科常用藥"}<span>{"劑量查詢"}</span></h1>
+                                </div>
                                 <div class="tanjiro-logo" title="竈門炭治郎 (水之呼吸 / 日之呼吸)">
                                     <img src="tanjiro.png" alt="竈門炭治郎" class="tanjiro-img" width="38" height="38" />
                                     <span class="tanjiro-wave">{"🌊"}</span>
