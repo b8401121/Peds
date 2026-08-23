@@ -143,7 +143,7 @@ fn app() -> Html {
                             </button>
                             <div class="brand">
                                 <div class="shinobu-logo" title="蟲柱 胡蝶忍 (蟲之呼吸・藥理醫療・兒科常用藥)">
-                                    <img src="shinobu.png" alt="蟲柱 胡蝶忍" class="shinobu-img" width="38" height="38" />
+                                    <img src="shinobu.png" alt="蟲柱 胡蝶忍" class="shinobu-img" width="50" height="50" />
                                     <span class="shinobu-butterfly">{"🦋"}</span>
                                 </div>
                                 <div class="brand-title-wrap">
@@ -153,7 +153,7 @@ fn app() -> Html {
                                     <h1>{"兒科常用藥"}<span>{"劑量查詢"}</span></h1>
                                 </div>
                                 <div class="tanjiro-logo" title="竈門炭治郎 (水之呼吸 / 日之呼吸)">
-                                    <img src="tanjiro.png" alt="竈門炭治郎" class="tanjiro-img" width="38" height="38" />
+                                    <img src="tanjiro.png" alt="竈門炭治郎" class="tanjiro-img" width="50" height="50" />
                                     <span class="tanjiro-wave">{"🌊"}</span>
                                 </div>
                             </div>
