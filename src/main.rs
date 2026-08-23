@@ -142,9 +142,9 @@ fn app() -> Html {
                                 <span class="menu-text">{"分類"}</span>
                             </button>
                             <div class="brand">
-                                <div class="zenitsu-logo" title="我妻善逸 (雷之呼吸 兒科常用藥)">
-                                    <img src="zenitsu.png" alt="我妻善逸" class="zenitsu-img" width="38" height="38" />
-                                    <span class="zenitsu-bolt">{"⚡"}</span>
+                                <div class="shinobu-logo" title="蟲柱 胡蝶忍 (蟲之呼吸・藥理醫療・兒科常用藥)">
+                                    <img src="shinobu.png" alt="蟲柱 胡蝶忍" class="shinobu-img" width="38" height="38" />
+                                    <span class="shinobu-butterfly">{"🦋"}</span>
                                 </div>
                                 <div class="brand-title-wrap">
                                     <div class="akubyou-plaque" title="惡病滅殺 (日輪刀銘文)">
