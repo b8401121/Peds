@@ -391,7 +391,7 @@ const DATA=[
 ]},
 
 {c:'抗生素 Antibiotics',k:'抗生素 antibiotic',d:[
- {n:'Curam 水劑',rt:'口服',s:'amoxicillin/clavulanate 50/12.5 mg/mL（<b>4:1</b>）懸液 ｜ 無水劑：Curam 1g 膜衣錠 (875/125)',f:'(0.3×BW) mL TID (45 mg/kg/day) ｜ 錠劑：0.5~1 錠 BID',
+ {n:'Curam（45 mg/kg/day）',rt:'口服',s:'amoxicillin/clavulanate 50/12.5 mg/mL（<b>4:1</b>）懸液 ｜ 無水劑：Curam 1g 膜衣錠 (875/125)',f:'(0.3×BW) mL TID (45 mg/kg/day) ｜ 錠劑：0.5~1 錠 BID',
    wm:'<b>此 45 mg/kg/day 不適用於 AOM。</b>AOM 需 amoxicillin <b>80–90 mg/kg/day 分 BID</b>（台灣 PNSP 盛行率高）—— 請用下方 ★ 併用方案。45 mg/kg/day 只適用於<b>無風險因子的低抗藥區鼻竇炎、GAS 咽炎、皮膚軟組織感染</b>。<br><b>💊 水劑特性（4:1）：</b>在 45 mg/kg/day 時 clavulanate 累積達 11.25 mg/kg/day，略高於 Stanford 建議的 &lt;10。約 33 kg 起依體重換算的 clavulanate 會超過成人每日量（約 375 mg）—— <b>大孩子請直接改用 Curam 1g 錠（875/125，7:1），勿再依體重放大水劑</b>。<br><b>💊 無水劑／錠劑方案（Curam F.C. 1 g 膜衣錠，875/125，7:1 配方）：</b><br>• &lt;18 kg：1g 膜衣錠體積大且分割誤差大，建議優先用水劑。<br>• 18–25 kg：每次 <b>0.5 錠 BID（Q12H）</b> ＝ 每日 Amox 875 mg（約 35~48 mg/kg/day）＋ Clav 125 mg（&lt;10 安全範圍 ✅）。<br>• 25–35 kg：每次 <b>0.5 錠 TID（一日 3 次）</b> ＝ 每日 Amox 1312.5 mg（約 38~52 mg/kg/day）＋ Clav 187.5 mg。<br>• ≥35 kg 或成人：每次 <b>1 錠 BID（Q12H）</b> ＝ 每日 Amox 1750 mg ＋ Clav 250 mg（已達常規成人標準量 875/125 BID ✅）。',
    m:['= 45 mg/kg/day（一般/中度感染）','AOM 高劑量請見下方 ★ 併用方案（90 mg/kg/day）',
       '無水劑／錠劑方案：Curam 1g 膜衣錠（875/125，7:1 配方），換算見下方精算欄',
