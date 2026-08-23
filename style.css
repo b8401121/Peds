@@ -50,9 +50,9 @@
   --inj-soft: #f5f3ff;
   --inj-border: #ddd6fe;
 
-  --oral: #0284c7;
-  --oral-soft: #f0f9ff;
-  --oral-border: #bae6fd;
+  --oral: #2563eb;
+  --oral-soft: #eff6ff;
+  --oral-border: #bfdbfe;
 
   --topical: #059669;
   --topical-soft: #ecfdf5;
@@ -62,9 +62,9 @@
   --rectal-soft: #fff7ed;
   --rectal-border: #fed7aa;
 
-  --inhal: #0891b2;
-  --inhal-soft: #ecfeff;
-  --inhal-border: #a5f3fc;
+  --inhal: #db2777;
+  --inhal-soft: #fdf2f8;
+  --inhal-border: #fbcfe8;
 
   --route-std: #f1f5f9;
   --route-std-text: #475569;
@@ -109,9 +109,9 @@
   --inj-soft: #f5f3ff;
   --inj-border: #ddd6fe;
 
-  --oral: #b45309;
-  --oral-soft: #fef3c7;
-  --oral-border: #fde68a;
+  --oral: #1d4ed8;
+  --oral-soft: #eff6ff;
+  --oral-border: #bfdbfe;
 
   --topical: #047857;
   --topical-soft: #f0fdf4;
@@ -121,9 +121,9 @@
   --rectal-soft: #fff7ed;
   --rectal-border: #ffedd5;
 
-  --inhal: #0e7490;
-  --inhal-soft: #f0fdfa;
-  --inhal-border: #99f6e4;
+  --inhal: #be185d;
+  --inhal-soft: #fff1f2;
+  --inhal-border: #fecdd3;
 
   --route-std: #e7dfd3;
   --route-std-text: #57534e;
@@ -172,9 +172,9 @@
   --rectal-soft: #431407;
   --rectal-border: #9a3412;
 
-  --inhal: #22d3ee;
-  --inhal-soft: #164e63;
-  --inhal-border: #0891b2;
+  --inhal: #f472b6;
+  --inhal-soft: #500724;
+  --inhal-border: #831843;
 
   --route-std: #334155;
   --route-std-text: #e2e8f0;
