@@ -343,8 +343,9 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 8px;
   line-height: 1;
+  margin-bottom: 2px;
   transition: transform 0.2s ease;
 }
 
@@ -353,15 +354,15 @@ header {
 }
 
 .akubyou-img {
-  height: 28px;
+  height: 44px;
   width: auto;
   object-fit: contain;
-  filter: drop-shadow(0 1px 3px rgba(220, 38, 38, 0.45));
+  filter: drop-shadow(0 2px 4px rgba(220, 38, 38, 0.45));
 }
 
 .muzan-banned-img {
-  width: 28px;
-  height: 28px;
+  width: 38px;
+  height: 38px;
   object-fit: contain;
   filter: drop-shadow(0 2px 4px rgba(220, 38, 38, 0.35));
   transition: transform 0.2s ease;
@@ -369,15 +370,15 @@ header {
 }
 
 .muzan-banned-img:hover {
-  transform: scale(1.2) rotate(12deg);
+  transform: scale(1.18) rotate(12deg);
 }
 
 .theme-dark .akubyou-img {
-  filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.75));
+  filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.85));
 }
 
 .theme-dark .muzan-banned-img {
-  filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.8));
+  filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.8));
 }
 
 h1 {
@@ -1583,12 +1584,12 @@ main {
   }
 
   .akubyou-img {
-    height: 20px;
+    height: 32px;
   }
 
   .muzan-banned-img {
-    width: 22px;
-    height: 22px;
+    width: 28px;
+    height: 28px;
   }
 
   .theme-toggle-btn {
