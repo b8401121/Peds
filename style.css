@@ -248,7 +248,7 @@ header {
   gap: 8px;
 }
 
-.pikachu-logo {
+.zenitsu-logo {
   position: relative;
   display: flex;
   align-items: center;
@@ -256,32 +256,33 @@ header {
   width: 36px;
   height: 36px;
   cursor: pointer;
-  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.15));
+  filter: drop-shadow(0 2px 4px rgba(234, 88, 12, 0.25));
   transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.pikachu-logo:hover {
-  transform: scale(1.15) rotate(-4deg);
+.zenitsu-logo:hover {
+  transform: scale(1.18) rotate(3deg);
+  filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.6));
 }
 
-.pika-svg {
-  width: 34px;
-  height: 34px;
+.zenitsu-svg {
+  width: 36px;
+  height: 36px;
   display: block;
 }
 
-.pika-bolt {
+.zenitsu-bolt {
   position: absolute;
-  bottom: -2px;
-  right: -5px;
+  bottom: -3px;
+  right: -6px;
   font-size: 13px;
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
-  animation: pika-sparkle 1.8s infinite ease-in-out;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+  animation: thunder-sparkle 1.6s infinite ease-in-out;
 }
 
-@keyframes pika-sparkle {
-  0%, 100% { transform: scale(1); opacity: 0.9; }
-  50% { transform: scale(1.25) rotate(10deg); opacity: 1; }
+@keyframes thunder-sparkle {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.9; }
+  50% { transform: scale(1.3) rotate(15deg); opacity: 1; filter: drop-shadow(0 0 4px #facc15); }
 }
 
 h1 {
