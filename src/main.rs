@@ -148,7 +148,7 @@ fn app() -> Html {
                                 </div>
                                 <div class="brand-title-wrap">
                                     <div class="akubyou-plaque" title="惡病滅殺 (日輪刀銘文)">
-                                        <img src="akubyou.png" alt="惡病滅殺" class="akubyou-img" height="70" />
+                                        <img src="akubyou_clean.png" alt="惡病滅殺" class="akubyou-img" height="70" />
                                     </div>
                                     <h1>{"兒科常用藥"}<span>{"劑量查詢"}</span></h1>
                                 </div>
