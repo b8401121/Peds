@@ -418,28 +418,49 @@ const DATA=[
   m:['= 45 mg/kg/day','AOM 高劑量請見下方併用方案',
      '<b>沒有水劑時：amoxicillin 250 mg 膠囊泡水至 10 mL ＝ 25 mg/mL，與水劑同濃度，故 (0.6×BW) 的公式不變</b>，只多一個「先泡」的步驟（膠囊交家長回家泡，藥局不做分包）。詳見 <a href="/prototype-amox-cap.html" style="color:var(--accent);font-weight:700">錠劑／替代劑型換算 →</a>（<b>試驗品，未經藥師核對</b>）'],
   calc:bw=>[L('每次劑量',mL(0.6*bw),'TID',null),L('每日總量',MG(45*bw),'45 mg/kg/day',null)]},
- {n:'★ AOM 高劑量：Curam + Amolin 併用',rt:'口服',s:'目標 amoxicillin 90 mg/kg/day｜clavulanate 維持不變｜<b>用水劑，非針劑</b>',
-  f:'Curam 45 + Amolin 45 mg/kg/day',
-  m:['Curam 為 <b>4:1</b> 配方，單靠它拉到 90 mg/kg/day 會讓 clavulanate 達 22.5 mg/kg/day（必然嚴重腹瀉）',
-     '故 Curam 只給到 45 mg/kg/day，<b>不足的 45 由純 amoxicillin (Amolin) 補足</b>，clavulanate 總量不變',
-     'Stanford 抗生素管理：clavulanate 建議 <b>&lt;10 mg/kg/day</b>',
-     '<b>適用</b>：AOM 全年齡；ABS 有風險因子者（&lt;2 歲、托嬰/托兒所、近 1 個月用過抗生素、近期住院、免疫低下、症狀嚴重）',
-     '<b>上限</b>：amoxicillin 4 g/day（≈44 kg 即封頂）',
-     '體重 &gt;30 kg 糖漿體積過大，建議改 Curam 錠 + Amoxicillin 250/500 mg 膠囊',
-     '<b>任一端沒有水劑時，公式都不必改</b>：Amolin 端可用 amoxicillin 250 mg 膠囊泡水至 10 mL（＝ 25 mg/mL，同濃度）；Curam 端可用 F.C. 1 g 膜衣錠（7:1，但只能整錠／剖半，體重太小給不了）。詳見 <a href="/prototype-amox-cap.html" style="color:var(--accent);font-weight:700">錠劑／替代劑型換算 →</a>（<b>試驗品，未經藥師核對</b>）',
-     'Ref: <a href="https://publications.aap.org/pediatrics/article/131/3/e964/30912/The-Diagnosis-and-Management-of-Acute-Otitis-Media" target="_blank">AAP 2013 AOM</a> ｜ <a href="https://www.stanfordchildrens.org/content-public/pdf/antimicrobial-stewardship-program/augmentin-dosing-guide.pdf" target="_blank">Stanford Augmentin Guide</a>'],
-  calc:bw=>{
-    const want=90*bw, daily=Math.min(want,4000), capped=want>4000;
-    const cDaily=daily/2, aDaily=daily/2;
-    const cmL=cDaily/50, amL=aDaily/25;
-    const clav=cmL*12.5, clavKg=clav/bw;
-    const combo=(n)=>'Curam <b>'+mL(cmL/n)+'</b> ＋ Amolin <b>'+mL(amL/n)+'</b>';
-    return[
-      L('BID 用法（AAP 高劑量標準）',combo(2),'兩瓶各取此量，同時給，一日 2 次',null),
-      L('TID 用法（台灣 Curam 仿單）',combo(3),'兩瓶各取此量，同時給，一日 3 次',null),
-      L('Amoxicillin 每日總量',MG(daily),num(r1(daily/bw))+' mg/kg/day',capped?'已達 4 g/day 上限，實際降為 '+num(r1(daily/bw))+' mg/kg/day':null),
-      S('Clavulanate 每日總量',MG(clav),'（'+num(r2(clavKg))+' mg/kg/day）',clavKg>10?'超過建議上限 10 mg/kg/day（Curam 4:1 配方之固有限制）':null)
-    ];}},
+ {n:'★ AOM 高劑量：Curam + Amolin 併用',rt:'口服',s:'目標 amoxicillin 90 mg/kg/day｜clavulanate 維持不變｜水劑 ＆ 無水劑錠劑膠囊精算',
+   f:'Curam 45 + Amolin 45 mg/kg/day ｜ 錠劑膠囊：Curam 1g 膜衣錠 ＋ Amox 250mg 膠囊',
+   wm:'<b>🎯 AOM 高劑量處方目標（AAP 指引）：</b>目標 Amoxicillin <b>80–90 mg/kg/day</b>，clavulanate 鎖定在 <b>&lt;10 mg/kg/day</b>（避免嚴重腹瀉）。<br><b>💊 方案一：水劑併用（幼童首選）</b><br>• Curam 4:1 水劑（50/12.5 mg/mL）＋ Amolin 水劑（25 mg/mL）同時給予。<br><b>💊 方案二：無水劑／大孩子錠劑膠囊併用方案</b><br>• <b>Curam F.C. 1 g 膜衣錠</b>（875/125 mg，7:1 比例）＋ <b>Amoxicillin 250 mg 膠囊</b>。<br>• 體重 &lt;20 kg 若無水劑：<b>膠囊泡水法</b>（1 顆 250 mg 膠囊打開加水至 10 mL ＝ 25 mg/mL，等同 Amolin 水劑濃度，依水劑公式抽取）。<br>• 體重 20–30 kg：Curam 1g 每次 <b>0.5 錠（半錠）BID</b> ＋ 補足之 Amox 250mg 膠囊 BID。<br>• 體重 ≥30 kg：Curam 1g 每次 <b>1 錠 BID</b> ＋ 補足之 Amox 250mg 膠囊 BID。<br><b>上限：</b>Amoxicillin 每日總量 Max 4000 mg/day（約 44 kg 達上限）。',
+   m:['Curam 為 <b>4:1</b> 配方，單靠它拉到 90 mg/kg/day 會讓 clavulanate 達 22.5 mg/kg/day（必然嚴重腹瀉）',
+      '故 Curam 只給到 45 mg/kg/day，<b>不足的 45 由純 amoxicillin (Amolin) 補足</b>，clavulanate 總量不變',
+      'Stanford 抗生素管理：clavulanate 建議 <b>&lt;10 mg/kg/day</b>',
+      '<b>適用</b>：AOM 全年齡；ABS 有風險因子者（&lt;2 歲、托嬰/托兒所、近 1 個月用過抗生素、免疫低下、症狀嚴重）',
+      '<b>無水劑時</b>：Curam 1g 膜衣錠 (875/125) ＋ Amoxicillin 250mg 膠囊（換算見下方精算欄）',
+      '<b>上限</b>：amoxicillin 4 g/day（≈44 kg 即封頂）'],
+   r:[['AAP 2013 AOM 指引','https://publications.aap.org/pediatrics/article/131/3/e964/30912/The-Diagnosis-and-Management-of-Acute-Otitis-Media'],['Stanford Augmentin Guide','https://www.stanfordchildrens.org/content-public/pdf/antimicrobial-stewardship-program/augmentin-dosing-guide.pdf']],
+   calc:bw=>{
+     const want=90*bw, daily=Math.min(want,4000), capped=want>4000;
+     const cDaily=daily/2, aDaily=daily/2;
+     const cmL=cDaily/50, amL=aDaily/25;
+     const clav=cmL*12.5, clavKg=clav/bw;
+     const combo=(n)=>'Curam <b>'+mL(cmL/n)+'</b> ＋ Amolin <b>'+mL(amL/n)+'</b>';
+     
+     // Solid dosage calculation
+     let curamTab = 0.5, curamAmoxDaily = 875, curamClavDaily = 125, tabText = '0.5 錠（半錠）';
+     if (bw >= 30) {
+       curamTab = 1.0;
+       curamAmoxDaily = 1750;
+       curamClavDaily = 250;
+       tabText = '1 錠';
+     }
+     const deficit = Math.max(0, daily - curamAmoxDaily);
+     const amoxCapsBid = Math.round((deficit / 2) / 250);
+     const totalSolidAmox = curamAmoxDaily + (amoxCapsBid * 2 * 250);
+     const solidMgKg = totalSolidAmox / bw;
+     const solidClavKg = curamClavDaily / bw;
+     
+     const solidCombo = 'Curam 1g <b>'+tabText+'</b> ＋ Amox 250mg <b>'+TB(amoxCapsBid)+'</b>';
+
+     return[
+       L('【方案一】水劑 BID（AAP 標準）',combo(2),'兩瓶各取此量，同時給，一日 2 次（Q12H）',null),
+       L('【方案一】水劑 TID（仿單分流）',combo(3),'兩瓶各取此量，同時給，一日 3 次',null),
+       S('　水劑 Amoxicillin 每日總量',MG(daily),'（'+num(r1(daily/bw))+' mg/kg/day）',capped?'已達 4 g/day 上限':null),
+       S('　水劑 Clavulanate 每日總量',MG(clav),'（'+num(r2(clavKg))+' mg/kg/day）',clavKg>10?'超過建議上限 10 mg/kg/day（Curam 4:1 之固有限制）':null),
+       L('【方案二】無水劑／錠劑膠囊（BID）',solidCombo,'兩者同時吞服，一日 2 次（Q12H）',bw<20?'⚠️ <20 kg 錠劑吞服/分割困難，建議膠囊泡水（250mg+10mL水=25mg/mL）或水劑':null),
+       S('　錠劑膠囊 Amoxicillin 每日總量',MG(totalSolidAmox),'（'+num(r1(solidMgKg))+' mg/kg/day）',totalSolidAmox>4000?'已達 4 g 上限':null),
+       S('　錠劑膠囊 Clavulanate 每日總量',MG(curamClavDaily),'（'+num(r2(solidClavKg))+' mg/kg/day，<10 安全範圍 ✅）',null)
+     ];
+   }}
  {n:'Zithromax susp',s:'azithromycin 40 mg/mL｜15 mL/btl',f:'依適應症分流（見下）',
   w:'<b>常規 10 mg/kg/day QD</b>（AOM／鼻竇炎，療程 3 天）為主要用法。<b>兩個例外需另外記</b>：<b>GAS 咽炎 12 mg/kg × 5 天</b>（Max 500 mg/day）、<b>CAP 10 mg/kg 第 1 天 → 5 mg/kg 第 2–5 天</b>。台灣兒童 macrolide-resistant <i>M. pneumoniae</i> 2019 年 62.5%、2020 年 85.7% —— 應保留給黴漿菌、百日咳、非典型病原或真正 β-lactam 過敏者。',
   m:['AOM / 鼻竇炎：10 mg/kg QD × 3 天','GAS 咽炎：12 mg/kg QD × 5 天（Max 500 mg/day）','CAP：10 mg/kg D1 → 5 mg/kg D2–5'],
