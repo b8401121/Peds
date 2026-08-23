@@ -289,7 +289,7 @@ h1 span {
 }
 
 /* ==========================================================================
-   Weight Input Box Component (Clean Light Style + LCD Digital Font)
+   Weight Input Box Component (Clean Light Frame + Gray LCD Display Window)
    ========================================================================== */
 .bwbox {
   display: flex;
@@ -298,7 +298,7 @@ h1 span {
   background: var(--primary-soft);
   border: 1.5px solid var(--primary-border);
   border-radius: var(--radius-md);
-  padding: 4px 10px;
+  padding: 4px 8px;
   transition: all 0.2s ease;
 }
 
@@ -312,12 +312,36 @@ h1 span {
   font-weight: 700;
   color: var(--primary);
   white-space: nowrap;
+  padding-left: 2px;
 }
 
-.bw-input-wrap {
+/* Gray LCD Screen Display Window */
+.bw-lcd-screen {
+  position: relative;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 4px;
+  background: #d6ded6;
+  border: 1.5px solid #a2aca2;
+  border-radius: 6px;
+  padding: 2px 8px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.18), 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.lcd-ghost {
+  position: absolute;
+  right: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'DSEG7-Classic', 'DSEG7-Modern', monospace;
+  font-size: 24px;
+  font-weight: 700;
+  color: #b5beb5;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: 2px;
+  line-height: 1;
+  text-align: right;
 }
 
 .bwbox input::-webkit-outer-spin-button,
@@ -327,6 +351,8 @@ h1 span {
 }
 
 .bwbox input {
+  position: relative;
+  z-index: 2;
   -moz-appearance: textfield;
   width: 68px;
   font-family: 'DSEG7-Classic', 'DSEG7-Modern', monospace;
@@ -335,25 +361,62 @@ h1 span {
   letter-spacing: 2px;
   border: 0;
   background: transparent;
-  color: var(--ink);
+  color: #1a221a;
   text-align: right;
   outline: none;
   font-variant-numeric: tabular-nums;
   padding: 0;
   margin: 0;
+  line-height: 1;
 }
 
 .bwbox input::placeholder {
-  color: var(--ink-muted);
-  font-family: inherit;
+  color: transparent;
 }
 
 .bwbox .unit {
-  font-family: 'DSEG7-Classic', 'DSEG7-Modern', inherit;
-  font-size: 12px;
-  font-weight: 800;
-  color: var(--primary);
+  position: relative;
+  z-index: 2;
+  font-family: 'DSEG7-Classic', 'DSEG7-Modern', -apple-system, monospace;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: #2b362b;
   text-transform: uppercase;
+  user-select: none;
+  line-height: 1;
+}
+
+/* Theme Adaptations for Gray LCD Display */
+.theme-dark .bw-lcd-screen {
+  background: #141e28;
+  border-color: #2c3e50;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+.theme-dark .lcd-ghost {
+  color: rgba(56, 189, 248, 0.15);
+}
+.theme-dark .bwbox input {
+  color: #38bdf8;
+  text-shadow: 0 0 6px rgba(56, 189, 248, 0.6);
+}
+.theme-dark .bwbox .unit {
+  color: #38bdf8;
+}
+
+.theme-warm .bw-lcd-screen {
+  background: #ded7c6;
+  border-color: #aba18e;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+.theme-warm .lcd-ghost {
+  color: #c4bbab;
+}
+.theme-warm .bwbox input {
+  color: #2b2114;
+}
+.theme-warm .bwbox .unit {
+  color: #4a3b2a;
 }
 
 /* Stepper Push-Buttons */
@@ -1355,33 +1418,40 @@ main {
   }
 
   .bwbox {
-    padding: 3px 8px;
+    padding: 3px 6px;
     flex: none;
     border-radius: var(--radius-sm);
   }
 
   .bwbox label {
-    font-size: 12.5px;
+    font-size: 11px;
   }
 
-  .bw-input-wrap {
-    gap: 2px;
+  .bw-lcd-screen {
+    padding: 2px 6px;
+    gap: 3px;
+  }
+
+  .lcd-ghost {
+    font-size: 19px;
+    right: 22px;
+    letter-spacing: 1.5px;
   }
 
   .bwbox input {
-    width: 58px;
-    font-size: 20px;
+    width: 54px;
+    font-size: 19px;
     letter-spacing: 1.5px;
   }
 
   .bwbox .unit {
-    font-size: 12px;
+    font-size: 10px;
   }
 
   .steps button {
-    width: 26px;
-    height: 26px;
-    font-size: 15px;
+    width: 25px;
+    height: 25px;
+    font-size: 14px;
   }
 
   .search-wrap {
