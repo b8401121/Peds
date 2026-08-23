@@ -460,7 +460,7 @@ const DATA=[
        S('　錠劑膠囊 Amoxicillin 每日總量',MG(totalSolidAmox),'（'+num(r1(solidMgKg))+' mg/kg/day）',totalSolidAmox>4000?'已達 4 g 上限':null),
        S('　錠劑膠囊 Clavulanate 每日總量',MG(curamClavDaily),'（'+num(r2(solidClavKg))+' mg/kg/day，<10 安全範圍 ✅）',null)
      ];
-   }}
+   }},
  {n:'Zithromax susp',s:'azithromycin 40 mg/mL｜15 mL/btl',f:'依適應症分流（見下）',
   w:'<b>常規 10 mg/kg/day QD</b>（AOM／鼻竇炎，療程 3 天）為主要用法。<b>兩個例外需另外記</b>：<b>GAS 咽炎 12 mg/kg × 5 天</b>（Max 500 mg/day）、<b>CAP 10 mg/kg 第 1 天 → 5 mg/kg 第 2–5 天</b>。台灣兒童 macrolide-resistant <i>M. pneumoniae</i> 2019 年 62.5%、2020 年 85.7% —— 應保留給黴漿菌、百日咳、非典型病原或真正 β-lactam 過敏者。',
   m:['AOM / 鼻竇炎：10 mg/kg QD × 3 天','GAS 咽炎：12 mg/kg QD × 5 天（Max 500 mg/day）','CAP：10 mg/kg D1 → 5 mg/kg D2–5'],
