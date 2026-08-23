@@ -1139,16 +1139,16 @@ main {
 .dose .big {
   display: inline-flex;
   align-items: baseline;
-  gap: 4px;
+  gap: 5px;
   background: #d6ded6;
   border: 1.5px solid #a2aca2;
   border-radius: 6px;
-  padding: 3px 10px;
+  padding: 4px 12px;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.16), 0 1px 0 rgba(255, 255, 255, 0.7);
   font-family: 'LCD-Digits', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
-  font-size: 22px;
+  font-size: 26px;
   font-weight: 700;
-  letter-spacing: 1.5px;
+  letter-spacing: 2px;
   color: #1a221a;
   font-variant-numeric: tabular-nums;
   line-height: 1.2;
@@ -1169,9 +1169,9 @@ main {
 }
 
 .dose.sm .big {
-  font-size: 18px;
-  padding: 2px 8px;
-  letter-spacing: 1px;
+  font-size: 21px;
+  padding: 3px 10px;
+  letter-spacing: 1.5px;
 }
 
 /* Secondary Dose Rows (e.g. Sub notes/caps) */
@@ -1199,12 +1199,12 @@ main {
   background: #dce3dc;
   border: 1px solid #a8b2a8;
   border-radius: 4px;
-  padding: 1px 6px;
+  padding: 2px 8px;
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12);
   font-family: 'LCD-Digits', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
-  font-size: 13.5px;
+  font-size: 15.5px;
   font-weight: 700;
-  letter-spacing: 1px;
+  letter-spacing: 1.2px;
   color: #1a221a;
 }
 
@@ -1550,7 +1550,8 @@ main {
   }
 
   .dose .big {
-    font-size: 20px;
+    font-size: 23px;
+    padding: 3px 10px;
   }
 }
 
