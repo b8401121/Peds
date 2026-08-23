@@ -289,7 +289,7 @@ h1 span {
 }
 
 /* ==========================================================================
-   Weight Input Box Component (Clean & Harmonious Light Style)
+   Weight Input Box Component (Clean Light Style + LCD Digital Font)
    ========================================================================== */
 .bwbox {
   display: flex;
@@ -308,7 +308,7 @@ h1 span {
 }
 
 .bwbox label {
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 700;
   color: var(--primary);
   white-space: nowrap;
@@ -317,7 +317,7 @@ h1 span {
 .bw-input-wrap {
   display: flex;
   align-items: baseline;
-  gap: 3px;
+  gap: 4px;
 }
 
 .bwbox input::-webkit-outer-spin-button,
@@ -328,10 +328,11 @@ h1 span {
 
 .bwbox input {
   -moz-appearance: textfield;
-  width: 65px;
-  font-family: inherit;
-  font-size: 22px;
-  font-weight: 800;
+  width: 68px;
+  font-family: 'DSEG7-Classic', 'DSEG7-Modern', monospace;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 2px;
   border: 0;
   background: transparent;
   color: var(--ink);
@@ -344,12 +345,15 @@ h1 span {
 
 .bwbox input::placeholder {
   color: var(--ink-muted);
+  font-family: inherit;
 }
 
 .bwbox .unit {
-  font-size: 13.5px;
-  font-weight: 600;
-  color: var(--ink-secondary);
+  font-family: 'DSEG7-Classic', 'DSEG7-Modern', inherit;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--primary);
+  text-transform: uppercase;
 }
 
 /* Stepper Push-Buttons */
@@ -1365,8 +1369,9 @@ main {
   }
 
   .bwbox input {
-    width: 52px;
-    font-size: 19px;
+    width: 58px;
+    font-size: 20px;
+    letter-spacing: 1.5px;
   }
 
   .bwbox .unit {
