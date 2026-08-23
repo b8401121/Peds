@@ -147,6 +147,10 @@ fn app() -> Html {
                                     <span class="zenitsu-bolt">{"⚡"}</span>
                                 </div>
                                 <h1>{"兒科常用藥"}<span>{"劑量查詢"}</span></h1>
+                                <div class="tanjiro-logo" title="竈門炭治郎 (水之呼吸 / 日之呼吸)">
+                                    <img src="tanjiro.png" alt="竈門炭治郎" class="tanjiro-img" width="38" height="38" />
+                                    <span class="tanjiro-wave">{"🌊"}</span>
+                                </div>
                             </div>
                         </div>
                         <button type="button" class="theme-toggle-btn" title="切換配色模式 (柔和護眼 / 暖米色調 / 深色夜間)" onclick={toggle_theme}>
