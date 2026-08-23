@@ -390,7 +390,7 @@ const DATA=[
   m:['低品質研究，療效證據不足（<a href="https://www.uptodate.com/contents/management-of-gastroesophageal-reflux-disease-in-children-and-adolescents" target="_blank">UpToDate</a>）'],calc:null},
 ]},
 
-{c:'抗生素 Antibiotics',k:'抗生素 antibiotic 中耳炎 AOM 鼻竇炎 肺炎 咽炎 UTI 蜂窩性組織炎',d:[
+{c:'抗生素 Antibiotics',k:'抗生素 antibiotic 中耳炎 AOM 鼻竇炎 肺炎 咽炎 UTI 蜂窩性組織炎 doxycycline 多喜黴素 恙蟲病 四環黴素 立克次體 萊姆病',d:[
  {n:'Curam 水劑',rt:'口服',s:'amoxicillin/clavulanate 50/12.5 mg/mL（<b>4:1</b>）懸液｜劑量以 amoxicillin 計｜北醫另有針劑（5:1、以總重計），見下一張',f:'(0.3×BW) mL',
   w:'<b>此 45 mg/kg/day 不適用於 AOM。</b>AOM 需 amoxicillin <b>80–90 mg/kg/day 分 BID</b>（台灣 PNSP 盛行率高）—— 請用下方 ★ 併用方案。45 mg/kg/day 只適用於<b>無風險因子的低抗藥區鼻竇炎、GAS 咽炎、皮膚軟組織感染</b>。另注意 Curam 4:1 在 45 mg/kg/day 時 clavulanate 已達 11.25 mg/kg/day，高於 Stanford 建議的 &lt;10。<br><b>約 33 kg 起，依體重換算的 clavulanate 會超過成人每日量（約 375 mg）</b> —— 水劑本來就是給小小孩的，大孩子請直接用 <b>Curam 錠 875/125 BID</b>，不要再依體重放大。這也是為什麼高劑量 AOM 要用下方的 ★ 併用方案：把 clavulanate 鎖在 45 mg/kg/day 的水位，缺的 amoxicillin 由 Amolin 補。',
   m:['= 45 mg/kg/day','High dose amoxicillin = 80–90 mg/kg/day','若院內有 7:1 (400/57) 或 14:1 ES-600 應優先使用',
@@ -477,6 +477,26 @@ const DATA=[
   wm:'抗藥性提醒同 Sulfacotrim：<b>不宜作發燒性 UTI 經驗用藥</b>，對 GAS 涵蓋不可靠。',
   m:['<b>Max</b> 2 # Q12H','蠶豆症建議勿用'],
   calc:bw=>{const x=bw/20;return[L('每次劑量',TB(Math.min(x,2)),'Q12H',x>2?'已達上限 2 #':null)]}},
+  {n:'Doxycycline 100 mg (多喜黴素)',rt:'口服',s:'doxycycline hyclate 100 mg/cap｜立克次體・恙蟲病・非典型肺炎・萊姆病・披衣菌',f:'<45 kg: 2.2~4.4 mg/kg/day 分 BID ｜ ≥45 kg: 100 mg BID',
+   wm:'<b>💡 破除兒童牙齒染色迷思（美國 CDC & AAP 實證）：</b>早期四環黴素（tetracycline）因與鈣螯合沉積導致牙齒變色，但 <b>doxycycline 與鈣結合力低得多</b>。美國 CDC 及 AAP 指引證實：<b>8 歲以下兒童短療程（≤21 天）使用 doxycycline，並不會造成牙齒染色或琺瑯質發育不全！</b><br><b>⚠️ 恙蟲病與立克次體重症一線救命用藥：</b>對恙蟲病（Scrub typhus）、洛磯山斑點熱（RMSF）等立克次體重症感染，<b>不限年齡皆為首選第一線救命抗生素</b>（切勿因恐懼牙齒染色而延誤治療造成生命危險）。<br><b>⚠️ 服藥與防護注意事項：</b>需配<b>充足水分（一杯水）並維持坐/立姿</b>吞服，服藥後 30 分鐘內勿立即平躺以防食道炎/潰瘍；服藥期間注意防曬（光敏感性）；避免與鈣片、鐵劑、制酸劑同時服用（間隔 2 小時）。',
+   m:['<b>&lt;45 kg</b>：2.2–4.4 mg/kg/day，分 Q12H（BID）','<b>≥45 kg 或成人</b>：100 mg Q12H（BID，每次 1 顆）','恙蟲病/立克次體：4.4 mg/kg/day 分 BID','單次 <b>Max</b> 100 mg；每日 Max 200 mg'],
+   r:[['NEJS: 兒童可以使用四環黴素治療感染嗎','https://www.nejs.app/2019/10/blog-post.html'],['CDC: Doxycycline and Tooth Staining','https://www.cdc.gov/rmsf/healthcare-providers/treatment.html'],['AAP Pediatrics: No Tooth Staining for Children Treated with Doxycycline','https://publications.aap.org/pediatrics/article/135/5/e1124/33946/No-Tooth-Staining-for-Children-Treated-with']],
+   calc:bw=>{
+     if(bw>=45){
+       return[
+         L('常規劑量（≥45 kg）',TB(1)+'（100 mg）','Q12H（BID）','已達常規/成人標準量 100 mg BID'),
+         L('每日總量',MG(200),'分 2 次',null)
+       ];
+     }
+     const loD=Math.min(1.1*bw,100), hiD=Math.min(2.2*bw,100);
+     const loTot=Math.min(2.2*bw,200), hiTot=Math.min(4.4*bw,200);
+     return[
+       L('每次劑量（Q12H）',rng(MG(loD),MG(hiD)),'Q12H（分 2 次）',hiD>=100?'已達單次上限 100 mg':null),
+       S('　一般感染（2.2 mg/kg/day）',MG(loD)+' / 次','（'+TB(loD/100)+'）'),
+       S('　重症/恙蟲病（4.4 mg/kg/day）',MG(hiD)+' / 次','（'+TB(hiD/100)+'）'),
+       L('每日總量',rng(MG(loTot),MG(hiTot)),'2.2 ~ 4.4 mg/kg/day（Max 200 mg）',4.4*bw>200?'已達每日上限 200 mg':null)
+     ];
+   }},
  {n:'抗生素藥膏',rt:'外用',s:'tetracycline 眼膏／fusidic acid 2% cream｜外用',f:'Tetracycline 1 PRN｜Fucidin Cream 1 TID',
   m:['Tetracycline：眼藥或一般外傷','Fucidin：懷疑 CA-MRSA'],calc:null},
  {n:'Ampicillin IV',rt:'針劑',s:'ampicillin｜<b>vial 規格依院內</b>（常見 250 / 500 / 1000 mg）',f:'100 mg/kg/day Q6H（中度）｜100–200 mg/kg/day（重度）',
