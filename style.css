@@ -353,14 +353,14 @@ header {
 }
 
 .akubyou-img {
-  height: 52px;
+  height: 70px;
   width: auto;
   object-fit: contain;
-  filter: drop-shadow(0 2px 5px rgba(220, 38, 38, 0.45));
+  filter: drop-shadow(0 2px 6px rgba(153, 27, 27, 0.45));
 }
 
 .theme-dark .akubyou-img {
-  filter: drop-shadow(0 0 12px rgba(239, 68, 68, 0.85));
+  filter: drop-shadow(0 0 14px rgba(248, 113, 113, 0.9));
 }
 
 h1 {
@@ -1585,7 +1585,7 @@ main {
   }
 
   .akubyou-img {
-    height: 38px;
+    height: 50px;
   }
 
   .theme-toggle-btn {
