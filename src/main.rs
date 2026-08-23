@@ -158,11 +158,18 @@ fn app() -> Html {
                         </button>
                     </div>
                     <div class="header-tools-row">
-                        <div class="bwbox">
-                            <label for="bw">{"體重"}</label>
+                        <div class={classes!("bwbox", if weight.is_none() { "empty" } else { "filled" })}>
+                            <label for="bw" class="bw-label">
+                                <span class="bw-icon">{"⚖️"}</span>
+                                <span class="bw-txt">{"輸入體重"}</span>
+                                if weight.is_none() {
+                                    <span class="bw-prompt-badge">{"請輸入"}</span>
+                                }
+                            </label>
                             <div class="bw-lcd-screen">
                                 <span class="lcd-ghost">{"88.8"}</span>
-                                <input id="bw" type="number" inputmode="decimal" step="0.5" min="0" max="120" placeholder="—" 
+                                <input id="bw" type="number" inputmode="decimal" step="0.5" min="0" max="120" placeholder="00.0" 
+                                    aria-label="輸入病童體重以計算劑量"
                                     value={weight.map(|v| v.to_string()).unwrap_or_default()}
                                     oninput={on_weight_input} />
                                 <span class="unit">{"KG"}</span>
